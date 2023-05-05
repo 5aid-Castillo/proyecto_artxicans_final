@@ -1,0 +1,16 @@
+.footer{
+    margin-bottom: 4.4rem;
+    padding: 1rem;
+    text-align: center;
+    color: var(--black-color);
+    background-color: var(--card-bg);
+}
+.footer > small{
+    margin-left: 1rem;
+    text-decoration:underline;
+}
+@media screen and (min-width:1024px){
+    .footer{
+        margin-bottom:0;
+    }
+}
