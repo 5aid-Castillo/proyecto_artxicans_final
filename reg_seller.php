@@ -7,9 +7,14 @@
 ?>
   
 <section class="reg_seller">
-  <form action="#" class="form-reg">
+  <form action="" method="post" class="form-reg" enctype="multipart/form-data">
 
       <h1 class="text-center">Registro de vendedor</h1>
+  
+         <?php
+          include('./global/regseller.php');
+         ?>
+  
 
       <!-- ProgressBar -->
       
@@ -49,6 +54,10 @@
       <!-- Step 2 -->
       <div class="form-step">
         <div class="input-group">
+          <label for="telefono">Lada</label>
+          <input type="text" name="lada" id="telefono" />
+        </div>
+        <div class="input-group">
           <label for="telefono">Número de teléfono</label>
           <input type="text" name="telefono" id="telefono" />
         </div>
@@ -74,13 +83,13 @@
       </div>
       <div class="input-group">
         <label for="identificador">Identificación oficial:</label>
-        <input style="color:red" type="file" name="identificador" id="identificador" >
+        <input style="color:red" type="file" name="file" >
         <small>*Adjuntar imagen escaneada de tu identificación oficial (ejemplo: INE, pasaporte)</small>
       </div>
       
       <div class="btns-group">
         <a href="#" class="btn-rgs btn-prev ">Regresar</a>
-        <input type="submit" value="Enviar" class="btn-send btn-rgs"/>
+        <input type="submit" value="Enviar" name="send-reg" class="btn-send btn-rgs"/>
       </div>
     </div>
   </form>

@@ -1,13 +1,17 @@
 <?php
     include('global/conexion.php');
     include('templates/cabecera.php');
-    include('global/login.php');
+ 
 ?>
  <div class="signup-form">
     
  <form action="" method="POST"  class="registro">
         <div class="form">
             <h1>Inicio sesión</h1>
+    <?php 
+           include('global/login.php');
+           
+    ?>
             
             <div class="grupo">
                 <input
