@@ -25,7 +25,7 @@
                 <p><strong>Descripcion:</strong> &nbsp;<?php echo $row[4];?></p>
                 <p class="price"><strong>Precio:</strong> &nbsp;$<?php echo $row[3];?></p>
                 <p><strong>Categoria:</strong> &nbsp;<?php echo $row[5];?></p>
-                <p><strong>Vendido por:</strong> &nbsp;<a href="">Nahuilla<a></p>
+                <p><strong>Vendido por:</strong> &nbsp;<a href="">Said<a></p>
                 
 
                 <div class="choose">

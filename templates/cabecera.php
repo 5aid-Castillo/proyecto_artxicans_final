@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="./styles/pages/products.css?v=2" />
     <link rel="stylesheet" href="./styles/pages/sellers.css?v=2" />
     <link rel="stylesheet" href="./styles/pages/reg_seller.css?v=2" />
+    <link rel="stylesheet" href="./styles/pages/categories.css?v=2" />
     <link rel="stylesheet" href="index.css?v=2" />
     <!-- GoogleIcons -->
     <link
