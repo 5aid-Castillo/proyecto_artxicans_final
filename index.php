@@ -14,10 +14,17 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-           <div class="mobs">
+            <?php if(isset($_SESSION['user'])){ ?>
+               <div class="go-profile">
+                <button class="btn-mob-profile" onclick="location.href='./user/profile.php'">Mi perfil</button>
+            </div>
+            
+          <?php }else{?>
+        <div class="mobs">
             <button class="btn-mob-1" onclick="location.href='login.php'">Inicio de sesion</button>
             <button class="btn-mob-2" onclick="location.href='signup.php'">Regístrate</button>
           </div>
+          <?php }?>
           </div>
           
         </div>
@@ -47,15 +54,16 @@
   
 </div>
 
+
+
    <!-- LIST OF PRODUCTS -->
 
-
-   <section class='container-products'>
+   <section class='container-products' id="container-products">
   
-   <div class='mainContent grid'>    
+   <div class='mainContent grid' id="mainContent">    
    <?php 
-        $result = $conn ->query("SELECT * FROM products ORDER BY rand() LIMIT 12") or die ($conn->error);
-        while($row = mysqli_fetch_array($result)){
+        $result = $conn ->query("SELECT * FROM products ORDER BY rand() LIMIT 5") or die ($conn->error);
+        while($row = mysqli_fetch_assoc($result)){
   ?>    
 
     
@@ -77,8 +85,15 @@
             </div>
            </a>
         </div>
-        <?php }?>
+        <?php 
+          $id = $row['id_product'];
+
+      }?>
+        
       </div>
+      <div id="id-load">
+        <button id="load-more" data-id="<?php echo $id;?>">Load More</button>
+    </div>
     </section>
     
 <!--  -->

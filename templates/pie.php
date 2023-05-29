@@ -1,5 +1,5 @@
 <!-- Footer -->
-<section class="footer">
+ <section class="footer">
   <div class="footer-img">
     <img src="assets/material/tablas.jpg" alt="footer">
   </div>
@@ -51,7 +51,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> 
 
 
 <!-- <footer class="footer">
@@ -66,6 +66,27 @@
   
     <script src="./styles/bootstrap-5.2.3-dist/js/bootstrap.min.js"></script>
     
-   
+    <script type="text/javascript">
+      $(document).ready(function(){
+
+        $(document).on('click', '#load-more', function(event){
+          event.preventDefault();
+          
+          var id_product =$('#load-more').data('id');
+          
+          
+          $.ajax({
+            url:"load.php",
+            type:"post",
+            data:{id_product:id_product},
+            success:function(response){
+              $('#id-load').remove();
+              $('#mainContent').append(response);
+
+            }
+          })
+        });
+      });
+    </script>
   </body>
 </html> 

@@ -85,7 +85,7 @@
             else
                 {
                     ?>
-                    <div class="alert alert-danger">*Error al cargar la identificacion</div>
+                    <div class="alert alert-danger" role="alert">*Error al cargar la identificacion</div>
                            
                     <?php 
                 }
@@ -95,7 +95,7 @@
             ?>
             <div class="alert alert-danger">*Campos vacios</div>
                            
-                            <?php 
+            <?php 
         }
 
     }

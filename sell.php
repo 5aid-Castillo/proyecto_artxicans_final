@@ -64,13 +64,6 @@ Antes de empezar, te recordamos que únicamente se dará autorización a los usu
 
 
 
-
-
-
-
-
-
-
 <!-- Modal -->
 
       <div class="req">

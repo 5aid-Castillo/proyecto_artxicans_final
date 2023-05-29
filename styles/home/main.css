@@ -99,7 +99,8 @@
   flex-wrap: wrap;
 }
 .btn-mob-1,
-.btn-mob-2 {
+.btn-mob-2,
+.btn-mob-profile {
   padding: 0.5rem;
   border-radius: 10px;
   margin: 1rem;
@@ -108,7 +109,7 @@
   font-weight: bold;
   border: none;
 }
-.btn-mob-1 {
+.btn-mob-1,.btn-mob-profile {
   background: hsl(238, 45%, 59%, 0.9);
   color: white;
 }
@@ -129,6 +130,11 @@
 .categories-icon{
   width: 20px;
   height: 20px;
+}
+.go-profile{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 @media screen and (min-width: 768px) {
   .set-categories{

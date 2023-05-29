@@ -30,7 +30,7 @@
                         }
                     else
                         {
-                            $sql = (" INSERT INTO registro VALUES(NULL,'$nombre','$correo','$password')");
+                            $sql = (" INSERT INTO registro VALUES(NULL,'$nombre','$correo','$password','0')");
                             $result = mysqli_query($conn,$sql);
                             if ($result)
                                 {
