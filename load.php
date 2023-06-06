@@ -35,8 +35,8 @@ $output= "";
 
 <?php
         $output .= '
-        <div id="id-load">
-        <button id="load-more" data-id="'.$id_product.'">Load More</button>
+        <div id="id-load" class="load-more">
+        <button id="load-more" data-id="'.$id_product.'">Ver más</button>
     </div>
         ';  
 

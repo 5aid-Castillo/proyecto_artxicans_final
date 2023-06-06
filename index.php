@@ -91,8 +91,8 @@
       }?>
         
       </div>
-      <div id="id-load">
-        <button id="load-more" data-id="<?php echo $id;?>">Load More</button>
+      <div id="id-load" class="load-more">
+        <button id="load-more" data-id="<?php echo $id;?>">Ver más</button>
     </div>
     </section>
     

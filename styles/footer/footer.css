@@ -1,3 +1,4 @@
+
 .footer{
     width: 100%;
     position: relative;
@@ -123,6 +124,9 @@
     font-size: 10px;
     color: white;
 
+}
+.footerList a{
+    color: white;
 }
 
 @media screen and (min-width:840px){

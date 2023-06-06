@@ -29,19 +29,19 @@
         <span class="groupTitle">
           Servicios
         </span>
-        <li class="footerList flex">Vender</li>
-        <li class="footerList flex">Ayuda</li>
-        <li class="footerList flex">Preguntas frecuentes</li>
+        <li class="footerList flex"><a href="helpers/validate-seller.php">Vender</a></li>
+        <li class="footerList flex"><a href="./help.php">Ayuda</a></li>
+        <li class="footerList flex"><a href="./">Metodos de pago</a></li>
         
       </div>
       <div class="linkGroup">
         <span class="groupTitle">
           Informacion
         </span>
-        <li class="footerList flex">Accesibilidad</li>
-        <li class="footerList flex">Privacidad</li>
-        <li class="footerList flex">Terminos</li>
-        <li class="footerList flex">Metodos de pago</li>
+        <li class="footerList flex"><a href="./about.php">Nosotros</a></li>
+        <li class="footerList flex"><a href="./">Accesibilidad</a></li>
+        <li class="footerList flex"><a href="./"> Privacidad</a></li>
+        <li class="footerList flex"><a href="./">Terminos</a></li>
         
 
       </div>  

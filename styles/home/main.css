@@ -27,21 +27,7 @@
   display: block;
   width: 100%;
 }
-/* 
-.barra::before {
-  content: "";
-  height: 2px;
-  width: 0%;
-  bottom: 0;
-  position: absolute;
-  background: linear-gradient(
-    to right,
-    var(--second-alpha-color),
-    var(--first-color)
-  );
-  transition: 0.3s ease width;
-  left: 0;
-} */
+
 
 .i-login input:focus ~ .barra::before {
   width: 100%;
@@ -135,6 +121,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.load-more{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+.load-more button{
+  padding: 1rem;
+  border: none;
+  border-radius:0.7rem;
+  background-color: var(--second-alpha-color);
+  color:white;
+  font-weight: bold;
 }
 @media screen and (min-width: 768px) {
   .set-categories{
