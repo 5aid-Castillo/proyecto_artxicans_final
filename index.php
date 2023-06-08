@@ -56,6 +56,7 @@
 
 
 
+  
    <!-- LIST OF PRODUCTS -->
 
    <section class='container-products' id="container-products">
@@ -91,12 +92,20 @@
       }?>
         
       </div>
+      <!-- Loader -->
+      <div class="d-flex justify-content-center">
+        <div class="spinner-border text-warning"  style="width: 3rem; height: 3rem;" id="loader" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>  
+      </div>
+      <!-- Loader Finish -->
+
       <div id="id-load" class="load-more">
         <button id="load-more" data-id="<?php echo $id;?>">Ver más</button>
     </div>
     </section>
     
-<!--  -->
+ 
 
    
 <?php 

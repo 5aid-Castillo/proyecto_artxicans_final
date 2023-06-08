@@ -129,6 +129,7 @@
   
 }
 .load-more button{
+  
   padding: 1rem;
   border: none;
   border-radius:0.7rem;
@@ -149,4 +150,41 @@
   .start {
     width: 50%;
   }
+}
+
+
+
+
+
+/* Google Translate */
+.traducir{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+.traducir select{
+  padding: 1rem;
+  background: var(--first-color);
+  border-radius: 0.5rem;
+}
+.traducir select option{
+  padding:2rem;
+  border-radius: 0.5rem;
+}
+
+.traducir span{
+  display: none;
+}
+.skiptranslate {
+  font-size: 0 !important;
+}
+.traducir select option:checked{
+  color:black;
+}
+.skiptranslate iframe{
+  display:none;
+}
+body{
+  top:0px !important;
 }

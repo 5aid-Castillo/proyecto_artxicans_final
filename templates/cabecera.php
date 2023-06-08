@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php  session_start(); ?>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -15,16 +15,12 @@
     
     
     <!-- Styles -->
-    <link
-    rel="stylesheet"
-    type="text/css"
-    href="node_modules/swiper/swiper-bundle.css"
-    />
+   
     <link rel="stylesheet" href="./styles/bootstrap-5.2.3-dist/css/bootstrap.min.css">  
     <link rel="stylesheet" href="styles/pages/signup-login.css?v=2" />
     <link rel="stylesheet" href="./styles/home/products.css?v=2">
     <link rel="shortcut icon" href="assets/logo/a.png" />
-    <link rel="stylesheet" href="./styles/home/carousel.css?v=2" />
+    <!-- <link rel="stylesheet" href="./styles/home/carousel.css?v=2" /> -->
     <link rel="stylesheet" href="./styles/home/searchbox.css?v=2" />
     <link rel="stylesheet" href="./styles/footer/footer.css?v=2" />
     <link rel="stylesheet" href="./styles/home/main.css?v=2" />
@@ -102,6 +98,7 @@
             <li class="navItem"><a href="">Mis Compras</a></li>
             <li class="navItem"><a href="helpers/validate-seller.php">Vender</a></li>
             <li class="navItem"><a href="help.php">Ayuda</a></li>
+            <li class="navItem"><a data-bs-toggle="modal" data-bs-target="#exampleModal" style="cursor:pointer;">Idioma</a></li> 
             <?php if(@!$_SESSION['user']){?>
             <div class="headerBtn">
               <!-- <a href="#login"> -->
@@ -128,3 +125,44 @@
         </div>
       </nav>
     </header>
+
+
+
+
+
+
+
+    <!-- Modal --> 
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Idioma</h1>
+      </div>
+      <div class="modal-body">
+          <div class="traducir" id="traducir"></div>
+          <style>
+        .skiptranslate {
+           font-size: 0 !important;
+        }
+          </style>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+   <style>
+    .flag {
+    max-width: 20px;
+    width: 15px;
+  
+}
+
+
+
+   </style>

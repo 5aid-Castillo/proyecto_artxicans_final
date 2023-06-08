@@ -7,9 +7,7 @@
   border-radius: 3rem;
   cursor: pointer;
 }
-/* .btn-header1{
-  background: var(--second-alpha-color) !important;
-} */
+
 .header {
   position: fixed;
   background: var(--first-color);
@@ -49,6 +47,9 @@
   font-size: 1.7rem;
   text-decoration: none;
   color: var(--black-color);
+}
+.logo a::first-letter{
+  text-transform: uppercase !important;
 }
 /* .logo > a > img {
   width: 40px;

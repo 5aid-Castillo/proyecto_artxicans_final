@@ -22,7 +22,11 @@
     </div>
     <!-- Aqui empieza el body -->
 
-    
+    <!-- Choose -->
+<div class="d-grid gap-2 d-md-flex justify-content-start cat">
+  <button class="btn btn-secondary me-md-2 mb-2 mt-5 categories-btn" type="button" onclick="location.href='categories.php'"><img src="./assets/utilities/categorias.png" class="categories-icon" alt="categories-icon"> Ir a categorias</button>
+  
+</div>
    <!-- LIST OF PRODUCTS -->
   <section class='container-products'>
     <div class='mainContent grid'>
