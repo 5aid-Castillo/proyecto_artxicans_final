@@ -90,3 +90,58 @@
         height: auto;
     }
 }
+
+
+
+/* Star points */
+.form-stars{
+    width: 250px;
+    margin: 0 auto;
+    height: 50px;
+  }
+  
+.form-stars p {
+    text-align: center;
+  }
+  
+.form-stars label {
+    font-size: 20px;
+  }
+  
+.form-stars input[type="radio"] {
+    display: none;
+  }
+  
+ .form-stars label {
+    /* color: grey; */
+    color:black;
+  }
+  
+  .clasificacion {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+  }
+  
+.form-stars label:hover,
+.form-stars label:hover ~ label {
+    color: orange;
+  }
+  
+ .form-stars input[type="radio"]:checked ~ label {
+    color: orange;
+  }
+
+/* Bootstrap custom styles */
+.btn-info{ 
+    --bs-btn-color: var(--bs-white);
+    --bs-btn-bg: var(--second-alpha-color);
+    --bs-btn-border-color: var(--second-alpha-color);
+    --bs-btn-hover-color: var(--bs-white);
+    --bs-btn-hover-bg: #787bc8;
+    --bs-btn-hover-border-color:var(--second-alpha-color) ;
+    --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+    --bs-btn-active-color: var(--bs-btn-hover-color);
+    --bs-btn-active-bg: var(--second-alpha-color);
+    --bs-btn-active-border-color: var(--second-alpha-color);
+}
+

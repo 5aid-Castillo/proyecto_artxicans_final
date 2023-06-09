@@ -37,22 +37,76 @@
         </div>
         
     </section> -->
-    <div class="card mb-3 mx-auto" style="max-width: 540px;margin-top:2rem">
+    <div class="card mb-3 mx-auto card-product" style="width: 85vw;margin-top:2rem">
   <div class="row g-0">
     <div class="col-md-4">
-      <img src="assets/products/<?php echo $row[2]?>" class="object-fit-cover border rounded h-100 "  alt="<?php echo $row[1]?>">
-        
+    <div id="carouselExampleIndicators" class="carousel slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="./assets/products/<?php echo $row[2]?>" class="d-block w-100 object-fit-cover " style="height:70vh" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="./assets/products/<?php echo $row[7]?>" class="d-block w-100 object-fit-cover" style="height:70vh" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="./assets/products/<?php echo $row[8]?>" class="d-block w-100 object-fit-cover " style="height:70vh" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title"><?php echo $row[1]?></h5>
+        <h3 class="card-title"><?php echo $row[1]?></h3>
+        <p class=" card-text price">$<?php echo $row[3];?></p>
+        <p class="card-text"><small class="text-body-secondary">Vendido por:&nbsp;<strong>Said</strong></small></p>
         <p class="card-text"><?php echo $row[4]?></p>
-        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+        <p class="card-text stars-pointer">Calificación: 
+          <i class="bx bxs-star bx-1"></i>
+          <i class="bx bxs-star"></i>
+          <i class="bx bxs-star"></i>
+          <i class="bx bxs-star"></i>
+          <i class="bx bxs-star"></i>
+          (200)
+        </p>
+        <style>.stars-pointer .bx-1{color:orange;}</style>
+        <div class="choose">
+        <button type="button" class="btn btn-info" onclick="location.href=''">Agregar <i class="bx bxs-cart"></i></button>
+        <button type="button" class="btn btn-success" onclick="location.href=''">Comprar ahora</button>
+       
+        </div>
       </div>
     </div>
   </div>
 </div>
 
+
+   <form class="form-stars">
+  <p class="clasificacion">
+    <input id="radio1" type="radio" name="estrellas" value="5"><!--
+    --><label for="radio1">★</label><!--
+    --><input id="radio2" type="radio" name="estrellas" value="4"><!--
+    --><label for="radio2">★</label><!--
+    --><input id="radio3" type="radio" name="estrellas" value="3"><!--
+    --><label for="radio3">★</label><!--
+    --><input id="radio4" type="radio" name="estrellas" value="2"><!--
+    --><label for="radio4">★</label><!--
+    --><input id="radio5" type="radio" name="estrellas" value="1"><!--
+    --><label for="radio5">★</label>
+  </p>
+</form>
  
 
 
