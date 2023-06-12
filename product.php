@@ -70,18 +70,58 @@
     <div class="col-md-8">
       <div class="card-body">
         <h3 class="card-title"><?php echo $row[1]?></h3>
-        <p class=" card-text price">$<?php echo $row[3];?></p>
+        <p class="card-text price">$<?php echo $row[3];?></p>
         <p class="card-text"><small class="text-body-secondary">Vendido por:&nbsp;<strong>Said</strong></small></p>
         <p class="card-text"><?php echo $row[4]?></p>
         <p class="card-text stars-pointer">Calificación: 
-          <i class="bx bxs-star bx-1"></i>
-          <i class="bx bxs-star"></i>
-          <i class="bx bxs-star"></i>
-          <i class="bx bxs-star"></i>
-          <i class="bx bxs-star"></i>
-          (200)
+          <?php 
+            $id_product =$row[0];
+            $sql = mysqli_query($conn,"SELECT * FROM stars WHERE id_product = $id_product");
+            $sum =  mysqli_query($conn,"SELECT SUM(star) as score FROM stars WHERE id_product = $id_product");
+            $score = mysqli_fetch_array($sum);
+            $num = $sql->num_rows;
+            if($num > 0){ 
+            $total = $num * 5; 
+            /* $res = $total / 5; */  
+            
+            $data1 = $num * 1; $data2 = $num * 2;$data3 = $num * 3; $data4 = $num * 4; $data5 = $num * 5;
+            $counter = $score['score']; 
+               
+            
+            if($counter >= $data5):
+            ?>
+            <i class="bx bxs-star bx-5"></i><i class="bx bxs-star bx-5"></i><i class="bx bxs-star bx-5"></i><i class="bx bxs-star bx-5"></i><i class="bx bxs-star bx-5"></i>  
+            <?php elseif($counter >= $data4):?>
+            <i class="bx bxs-star bx-5"></i><i class="bx bxs-star bx-5"></i><i class="bx bxs-star bx-5"></i><i class="bx bxs-star bx-5"></i><i class="bx bxs-star bx-10"></i>
+            <?php elseif($counter >= $data3):?>
+            <i class="bx bxs-star bx-5"></i><i class="bx bxs-star bx-5"></i><i class="bx bxs-star bx-5"></i><i class="bx bxs-star bx-10"></i><i class="bx bxs-star bx-10"></i>
+            <?php elseif($counter >= $data2):?>
+            <i class="bx bxs-star bx-5"></i><i class="bx bxs-star bx-5"></i><i class="bx bxs-star bx-10"></i><i class="bx bxs-star bx-10"></i><i class="bx bxs-star bx-10"></i>  
+            <?php else:?>
+            <i class="bx bxs-star bx-5"></i><i class="bx bxs-star bx-10"></i><i class="bx bxs-star bx-10"></i><i class="bx bxs-star bx-10"></i><i class="bx bxs-star bx-10"></i>
+            <?php endif;
+            ?>
+        (<?php echo $num?>)
+         <!--  <?php echo $total?>
+          <?php echo $counter;?>
+           <?php echo $res?>  -->
+<?php
+            }else{?>
+            
+          <i class="bx bxs-star bx-10"></i>
+          <i class="bx bxs-star bx-10"></i>
+          <i class="bx bxs-star bx-10"></i>
+          <i class="bx bxs-star bx-10"></i>
+          <i class="bx bxs-star bx-10"></i>
+          
+            (0)
+            <?php }?>
+
+          
+          
+        
         </p>
-        <style>.stars-pointer .bx-1{color:orange;}</style>
+       
         <div class="choose">
         <button type="button" class="btn btn-info" onclick="location.href=''">Agregar <i class="bx bxs-cart"></i></button>
         <button type="button" class="btn btn-success" onclick="location.href=''">Comprar ahora</button>
@@ -91,23 +131,232 @@
     </div>
   </div>
 </div>
+<div class="comments">
 
+    <div class="mb-3 w-auto">
+      <label for="exampleFormControlTextarea1" class="form-label">Califica y comenta este producto:</label>
+          <!-- Stars -->
+      <form action="./helpers/stars.php?id_p=<?php echo $row[0]?>" method="POST" class="form-stars">
+          <p class="clasificacion">
+            <input id="radio1" type="radio" name="estrellas" value="5"><!--
+            --><label for="radio1">★</label><!--
+            --><input id="radio2" type="radio" name="estrellas" value="4"><!--
+            --><label for="radio2">★</label><!--
+            --><input id="radio3" type="radio" name="estrellas" value="3"><!--
+            --><label for="radio3">★</label><!--
+            --><input id="radio4" type="radio" name="estrellas" value="2"><!--
+            --><label for="radio4">★</label><!--
+            --><input id="radio5" type="radio" name="estrellas" value="1"><!--
+            --><label for="radio5">★</label>
+          </p>
+          <textarea class="form-control comment-text" id="exampleFormControlTextarea1" name="comment" rows="3" placeholder="Escribe un comentario." maxlength="100"></textarea>
+          <div class="btn-send-com">
+          <?php if(@!$_SESSION['user']){?>
+            
+            <!-- <input type="submit" class="btn btn-info" name="send-comment"value="Publicar" disabled>
+           -->
+            <div class="alert alert-primary" role="alert">
+                 Inicia sesión para comentar.
+            </div>
+          
+            <?php }else{
+                 $id_user = $_SESSION['id'];
+                 $query3 = mysqli_query($conn,"SELECT * FROM stars WHERE ID = $id_user AND id_product = $id_product");
+                 if($query3->num_rows > 0){
+                   echo "<input class='btn btn-info' name='send-comment' value='Publicar' disabled>";
+                   
+                  }else{   
+            ?>
+                
+                    <input type="submit" class="btn btn-info" name="send-comment" value="Publicar">
+          <?php } } ?>
+        </div>
+        </form>
+        <!-- Stars -->
 
-   <form class="form-stars">
-  <p class="clasificacion">
-    <input id="radio1" type="radio" name="estrellas" value="5"><!--
-    --><label for="radio1">★</label><!--
-    --><input id="radio2" type="radio" name="estrellas" value="4"><!--
-    --><label for="radio2">★</label><!--
-    --><input id="radio3" type="radio" name="estrellas" value="3"><!--
-    --><label for="radio3">★</label><!--
-    --><input id="radio4" type="radio" name="estrellas" value="2"><!--
-    --><label for="radio4">★</label><!--
-    --><input id="radio5" type="radio" name="estrellas" value="1"><!--
-    --><label for="radio5">★</label>
-  </p>
-</form>
+      </div>
+        </div>
+
+        <div class="all-comments">
+      <?php 
+  
+        $check = mysqli_query($conn,"SELECT * FROM registro INNER JOIN stars 
+        ON registro.ID = stars.ID INNER JOIN products 
+        ON stars.id_product = products.id_product 
+        WHERE stars.id_product = $id_product");
+          
+        $query2 = mysqli_query($conn,"SELECT * FROM registro INNER JOIN stars 
+        ON registro.ID = stars.ID INNER JOIN products 
+        ON stars.id_product = products.id_product 
+        WHERE stars.id_product = $id_product");
+      
+        if($check->num_rows > 0){ 
+          if(@!$_SESSION['user']){
+            $query2 = mysqli_query($conn,"SELECT * FROM registro INNER JOIN stars 
+          ON registro.ID = stars.ID INNER JOIN products 
+          ON stars.id_product = products.id_product 
+          WHERE stars.id_product = $id_product");  
+          }else{
+          $query2 = mysqli_query($conn,"SELECT * FROM registro INNER JOIN stars 
+          ON registro.ID = stars.ID INNER JOIN products 
+          ON stars.id_product = products.id_product 
+          WHERE stars.id_product = $id_product AND stars.ID <> $id_user");
+        
+          /* ============= */
+      
+            $query4 = mysqli_query($conn,"SELECT * FROM registro INNER JOIN stars 
+            ON registro.ID = stars.ID INNER JOIN products 
+            ON stars.id_product = products.id_product 
+            WHERE stars.id_product = $id_product AND stars.ID = $id_user ");
+    
+              $data2 = mysqli_fetch_array($query4);
+              ?>
+                
+              <div class="card card-comment border-primary mb-3">
+                 <div class="card-body">
+                   <div class="com-cointer"> 
+                     <div class="space-bt"> 
+                    <style>.space-bt{display:flex; justify-content:space-between;}</style>
+              <div class="st-cont">  
+                 <p class="stars-score"><strong><?php echo $data2['Nombre']?></strong>&nbsp;&nbsp; 
+              <?php
+             
+              switch($data2['star']){
+                case '1': echo "<i class='bx bxs-star bx-5'></i><i class='bx bxs-star bx-10'></i><i class='bx bxs-star bx-10'></i><i class='bx bxs-star bx-10'></i><i class='bx bxs-star bx-10'></i>";
+                break;
+                case '2': echo "<i class='bx bxs-star bx-5'></i><i class='bx bxs-star bx-5'></i><i class='bx bxs-star bx-10'></i><i class='bx bxs-star bx-10'></i><i class='bx bxs-star bx-10'></i>";
+                break;
+                case '3': echo "<i class='bx bxs-star bx-5'></i><i class='bx bxs-star bx-5'></i><i class='bx bxs-star bx-5'></i><i class='bx bxs-star bx-10'></i><i class='bx bxs-star bx-10'></i>";
+                break;
+                case '4': echo "<i class='bx bxs-star bx-5'></i><i class='bx bxs-star bx-5'></i><i class='bx bxs-star bx-5'></i><i class='bx bxs-star bx-5'></i><i class='bx bxs-star bx-10'></i>";
+                break;
+                case '5': echo "<i class='bx bxs-star bx-5'></i><i class='bx bxs-star bx-5'></i><i class='bx bxs-star bx-5'></i><i class='bx bxs-star bx-5'></i><i class='bx bxs-star bx-5'></i>";
+                break;
+                default: echo
+                  " 
+                  <i class='bx bxs-star bx-10'></i>
+                  <i class='bx bxs-star bx-10'></i>
+                  <i class='bx bxs-star bx-10'></i>
+                  <i class='bx bxs-star bx-10'></i>
+                  <i class='bx bxs-star bx-10'></i>
+                  ";
+              }
+              ?>
+              
+                
+
+            </p>
+            </div>
+            <div class="icons-com">
+            <i class='bx bxs-edit bx-sm edit-icon-c' data-bs-toggle="modal" data-bs-target="#editComModal"></i>
+                
+                
+            <i class='bx bxs-x-circle bx-sm del-icon-c' data-bs-toggle="modal" data-bs-target="#delComModal"></i>
+
+            </div>
+            </div>
+            </div> 
+        <p> <?php echo $data2['comment']?></p>
+        </div>
+      </div>
+        
+              
+         
+         <?php        
+            
+            }
+            /* ======== */
+        while($data = mysqli_fetch_array($query2)){
+          
+      ?>
+      <div class="card card-comment">
+        <div class="card-body">
+        <p class="stars-score"><strong><?php echo $data['Nombre']?></strong>&nbsp;&nbsp; 
+              <?php
+             
+              switch($data['star']){
+                case '1': echo "<i class='bx bxs-star bx-5'></i><i class='bx bxs-star bx-10'></i><i class='bx bxs-star bx-10'></i><i class='bx bxs-star bx-10'></i><i class='bx bxs-star bx-10'></i>";
+                break;
+                case '2': echo "<i class='bx bxs-star bx-5'></i><i class='bx bxs-star bx-5'></i><i class='bx bxs-star bx-10'></i><i class='bx bxs-star bx-10'></i><i class='bx bxs-star bx-10'></i>";
+                break;
+                case '3': echo "<i class='bx bxs-star bx-5'></i><i class='bx bxs-star bx-5'></i><i class='bx bxs-star bx-5'></i><i class='bx bxs-star bx-10'></i><i class='bx bxs-star bx-10'></i>";
+                break;
+                case '4': echo "<i class='bx bxs-star bx-5'></i><i class='bx bxs-star bx-5'></i><i class='bx bxs-star bx-5'></i><i class='bx bxs-star bx-5'></i><i class='bx bxs-star bx-10'></i>";
+                break;
+                case '5': echo "<i class='bx bxs-star bx-5'></i><i class='bx bxs-star bx-5'></i><i class='bx bxs-star bx-5'></i><i class='bx bxs-star bx-5'></i><i class='bx bxs-star bx-5'></i>";
+                break;
+                default: echo
+                  " 
+                  <i class='bx bxs-star bx-10'></i>
+                  <i class='bx bxs-star bx-10'></i>
+                  <i class='bx bxs-star bx-10'></i>
+                  <i class='bx bxs-star bx-10'></i>
+                  <i class='bx bxs-star bx-10'></i>
+                  ";
+              }
+              ?>
+             
+        </p>
+        <p> <?php echo $data['comment']?></p>
+        </div>
+      </div>
+    <?php }
+        }else{
+          ?>
+          <div class="alert alert-dark" role="alert">
+            Este producto aún no cuenta con comentarios.
+          </div>
+          <?php 
+        }
+    ?>
+</div>
+  
  
+<!-- Modals -->
+
+<!-- Modal Edit-->
+<div class="modal fade" id="editComModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Comentario</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <div class="mb-3">
+       
+        <textarea class="form-control edit-com-text" id="exampleFormControlTextarea1" rows="3" maxlength="100" ><?php echo $data2['comment']?></textarea>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-info" onclick="location.href=''">Editar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Delete -->
+<div class="modal fade" id="delComModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar Comentario</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <div class="mb-3">
+       
+      ¿Estás seguro de que deseas eliminar tu comentario?
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-danger" onclick="location.href=''">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 <?php 

@@ -98,7 +98,7 @@
             <li class="navItem"><a href="">Mis Compras</a></li>
             <li class="navItem"><a href="helpers/validate-seller.php">Vender</a></li>
             <li class="navItem"><a href="help.php">Ayuda</a></li>
-            <li class="navItem"><a data-bs-toggle="modal" data-bs-target="#exampleModal" style="cursor:pointer;">Idioma</a></li> 
+            <li class="navItem"><a data-bs-toggle="modal" data-bs-target="#translateModal" style="cursor:pointer;">Idioma</a></li> 
             <?php if(@!$_SESSION['user']){?>
             <div class="headerBtn">
               <!-- <a href="#login"> -->
@@ -133,7 +133,7 @@
 
 
     <!-- Modal --> 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="translateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -148,8 +148,8 @@
           </style>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Aceptar</button>
+        <button type="button" class="btn btn-info" data-bs-dismiss="modal">Aceptar</button>
+        
       </div>
     </div>
   </div>

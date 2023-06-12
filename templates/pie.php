@@ -63,63 +63,10 @@
     -->
     <script src="js/formReg.js"></script>
     <script src="js/Burgerbtn.js"></script>
-  
+    <script type="text/javascript" src="./js/Loader.js"></script>
+    <script type="text/javascript" src="./js/Translate.js"></script>
+    <script type="text/javascript" src="./js/EnableButton.js"></script> 
     <script src="./styles/bootstrap-5.2.3-dist/js/bootstrap.min.js"></script>
-    
-    <script type="text/javascript">
-      /* Loader */
-      const loadmore = document.getElementById('load-more');
-      const loader = document.getElementById('loader');
-      loader.style.display = 'none';
-   /*    loadmore.style.display = 'block';  */
-      /* Loader */
-      $(document).ready(function(){
-
-
-        $(document).on('click', '#load-more', function(event){
-          event.preventDefault();
-          
-     /* Loader */
-        loader.style.display = 'block';
-        loadmore.style.display = 'none'
-        setTimeout(() => {
-        loader.style.display = 'none';  
-        loadmore.style.display = 'block'
-     /* Loader */
-          var id_product =$('#load-more').data('id');
-          
-          
-          $.ajax({
-            url:"load.php",
-            type:"post",
-            data:{id_product:id_product},
-            success:function(response){
-              $('#id-load').remove();
-              $('#mainContent').append(response);
-
-            }
-          })
-
-        },3000);
-
-        });
-      });
-
-
-     
-      
-     
-     
-    </script>
-    <script type="text/javascript">
-      function googleTranslateElementInit() {
-         new google.translate.TranslateElement({
-            pageLanguage: 'es', layout: 
-            google.translate.TranslateElement.InlineLayout.VERTICAL, autoDisplay: 
-            false, includedLanguages: 'en,es', gaTrack: true, gaId: 'YOUR_API_KEY'
-            }, 'traducir');
-      }
-   </script>
   
    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
