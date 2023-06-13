@@ -185,30 +185,31 @@
         ON stars.id_product = products.id_product 
         WHERE stars.id_product = $id_product");
           
-        $query2 = mysqli_query($conn,"SELECT * FROM registro INNER JOIN stars 
-        ON registro.ID = stars.ID INNER JOIN products 
-        ON stars.id_product = products.id_product 
-        WHERE stars.id_product = $id_product");
+        
       
         if($check->num_rows > 0){ 
+          
           if(@!$_SESSION['user']){
             $query2 = mysqli_query($conn,"SELECT * FROM registro INNER JOIN stars 
-          ON registro.ID = stars.ID INNER JOIN products 
-          ON stars.id_product = products.id_product 
-          WHERE stars.id_product = $id_product");  
+            ON registro.ID = stars.ID INNER JOIN products 
+            ON stars.id_product = products.id_product 
+            WHERE stars.id_product = $id_product");  
+          
           }else{
-          $query2 = mysqli_query($conn,"SELECT * FROM registro INNER JOIN stars 
-          ON registro.ID = stars.ID INNER JOIN products 
-          ON stars.id_product = products.id_product 
-          WHERE stars.id_product = $id_product AND stars.ID <> $id_user");
-        
-          /* ============= */
-      
             $query4 = mysqli_query($conn,"SELECT * FROM registro INNER JOIN stars 
             ON registro.ID = stars.ID INNER JOIN products 
             ON stars.id_product = products.id_product 
             WHERE stars.id_product = $id_product AND stars.ID = $id_user ");
     
+            $query2 = mysqli_query($conn,"SELECT * FROM registro INNER JOIN stars 
+            ON registro.ID = stars.ID INNER JOIN products 
+            ON stars.id_product = products.id_product 
+            WHERE stars.id_product = $id_product AND stars.ID <> $id_user");
+            
+             if($query4->num_rows > 0){
+            /* ============= */
+
+           
               $data2 = mysqli_fetch_array($query4);
               ?>
                 
@@ -241,6 +242,7 @@
                   <i class='bx bxs-star bx-10'></i>
                   ";
               }
+            
               ?>
               
                 
@@ -248,9 +250,7 @@
             </p>
             </div>
             <div class="icons-com">
-            <i class='bx bxs-edit bx-sm edit-icon-c' data-bs-toggle="modal" data-bs-target="#editComModal"></i>
-                
-                
+            
             <i class='bx bxs-x-circle bx-sm del-icon-c' data-bs-toggle="modal" data-bs-target="#delComModal"></i>
 
             </div>
@@ -263,8 +263,9 @@
               
          
          <?php        
-            
+             }//ifquery4
             }
+       /*    } */
             /* ======== */
         while($data = mysqli_fetch_array($query2)){
           
@@ -314,27 +315,7 @@
  
 <!-- Modals -->
 
-<!-- Modal Edit-->
-<div class="modal fade" id="editComModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Comentario</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      <div class="mb-3">
-       
-        <textarea class="form-control edit-com-text" id="exampleFormControlTextarea1" rows="3" maxlength="100" ><?php echo $data2['comment']?></textarea>
-      </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-info" onclick="location.href=''">Editar</button>
-      </div>
-    </div>
-  </div>
-</div>
+
 <!-- Modal Delete -->
 <div class="modal fade" id="delComModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
@@ -351,7 +332,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-danger" onclick="location.href=''">Eliminar</button>
+        <button type="button" class="btn btn-danger" onclick="location.href='./helpers/delete-comment.php?id_com=<?php echo $data2['id_star'];?>'">Eliminar</button>
       </div>
     </div>
   </div>

@@ -139,11 +139,12 @@ include('../global/conexion.php');
                     <p><strong>Referencia:</strong>&nbsp;<?php echo $data['telefonoref']?></p>
                     <p><strong>Domicilio:</strong>&nbsp;<?php echo $data['domicilio']?></p>
                     <p><strong>Codigo Postal:</strong>&nbsp;<?php echo $data['postal']?></p>
-                    
-					<button class="btn-choose accept" onclick="location.href=''">Aceptar</button>
-					<button class="btn-choose decline" onclick="location.href=''">Rechazar</button>
-    
-					
+                    <form method="POST" class="form-vend">
+						<!-- <?php include('./helpers/seller-action.php');?> -->
+					<textarea class="txt-send">Estimado usuario, tu solicitud para poder vender ha sido " ".</textarea>
+					<input class="btn-choose decline" type="submit" name="reject-seller" value="Rechazar">
+				</form>
+				<input class="btn-choose accept" type="submit" name="accept-seller" value="Aceptar">
 				
                 </div>
 				</div>

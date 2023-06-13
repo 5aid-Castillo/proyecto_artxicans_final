@@ -61,6 +61,7 @@
       <small>Ayuda</small>
     </footer>
     -->
+    
     <script src="js/formReg.js"></script>
     <script src="js/Burgerbtn.js"></script>
     <script type="text/javascript" src="./js/Loader.js"></script>

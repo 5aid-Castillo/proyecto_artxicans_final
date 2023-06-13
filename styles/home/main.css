@@ -154,8 +154,6 @@
 
 
 
-
-
 /* Google Translate */
 .traducir{
   display: flex;
@@ -185,6 +183,7 @@
 .skiptranslate iframe{
   display:none;
 }
+
 body{
   top:0px !important;
 }

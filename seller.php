@@ -7,37 +7,16 @@
 ?>
 
 <section class="seller_true">
-    <h2>Bienvenido, estas listo para vender?</h2>
-    <div class="t-p-seller"> 
-        <style>.t-p-seller{
-  margin: 2rem auto;
-} </style>
-    <table class="table">
-  <thead>
-    <tr>
-      <th scope="col"></th>
-      <th scope="col">Productos</th>
-      <th scope="col">Editar</th>
-      <th scope="col">Eliminar</th>
-    </tr>
-  </thead>
-  <tbody>
-    <!-- Si tiene productos mostrar esto -->
-    <tr>
-      <th scope="row"><img src="./assets/products/alebrije1.jpg" alt="product" style="width:30px;heigth:30px"></th>
-      <td>Dragon grande alebrije</td>
-      <td class="edit-button"><a href="#" ><i class='bx bxs-edit-alt bx-sm'></i></a></td>
-      <td class="delete-button"><a href="#"><i class='bx bxs-x-circle bx-sm'></i></a></td>
-    </tr>
+    <h2>Bienvenido a la sección de vender</h2>
+    <div class="seller-buttons container-buttons-seller">
     
-    <!-- Else {} -->
-    <div class="alert alert-warning" role="alert">
-  Aun no tienes un producto activo presiona <a href="#" class="alert-link">Agregar producto</a> para registrar alguno de tus productos.
-</div>
-    
-  </tbody>
-</table>
-</div>
+    <button type="button" class="btn btn-info choose-btn" onclick="location.href='./productList.php'">Mis productos</button>
+    <button type="button" class="btn btn-info choose-btn" onclick="location.href=''">Mis pedidos</button>
+    <button type="button" class="btn btn-primary choose-btn" onclick="location.href='./profile-seller.php'">Mi perfil</button>
+    <button type="button" class="btn btn-success choose-btn" onclick="location.href=''">Mi cuenta de pagos</button>
+
+    </div>
+   
 </section>
 
 

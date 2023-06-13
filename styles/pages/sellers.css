@@ -240,8 +240,10 @@
   text-align: center;
 }
 .t-p-seller{
-  margin: 2rem auto;
+  margin: 2rem 1rem;
 }
+
+
 .edit-button a .bx{
   /* color:rgb(169, 169, 25) ;*/
   color:var(--second-alpha-color); 
@@ -249,8 +251,22 @@
 .delete-button a .bx{
   color: rgb(185, 34, 34);
 }
+.seller-buttons {
+  display: grid;
+  margin: 1rem 4rem;
+  justify-content: center;
+  /* Grid de ?cx?r */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.choose-btn{
+  margin: 2rem 2rem;
+}
+
 @media screen and (min-width:768px){
   .seller_true{
     margin-top: 2rem;
+  }
+  .t-p-seller{
+    margin:2rem 2rem;
   }
 }

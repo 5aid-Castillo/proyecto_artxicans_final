@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-06-2023 a las 22:09:18
+-- Tiempo de generación: 13-06-2023 a las 21:22:40
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -20,6 +20,19 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `artxicans`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `id_notif` int(11) NOT NULL,
+  `notication` varchar(150) NOT NULL,
+  `status` varchar(30) NOT NULL,
+  `ID` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -45,8 +58,8 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id_product`, `product`, `image`, `price`, `description`, `category`, `subcategory`, `image2`, `image3`, `ID`) VALUES
-(1, 'Vestido Bordado', 'blackdress.jpg', 1500, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dictum commodo leo et malesuada. Donec consectetur porttitor consectetur.', 'Ropa', 'Mujer', 'blackdress.jpg', 'blackdress.jpg', NULL),
-(2, 'Collar de Ambar', 'ambar.jpg', 450, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dictum commodo leo et malesuada. Donec consectetur porttitor consectetur.', 'Joyeria', '', 'ambar.jpg', 'ambar.jpg', NULL),
+(1, 'Vestido Bordado', 'blackdress.jpg', 1500, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dictum commodo leo et malesuada. Donec consectetur porttitor consectetur.', 'Ropa', 'Mujer', 'blackdress.jpg', 'blackdress.jpg', 5),
+(2, 'Collar de Ambar', 'ambar.jpg', 450, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dictum commodo leo et malesuada. Donec consectetur porttitor consectetur.', 'Joyeria', '', 'ambar.jpg', 'ambar.jpg', 5),
 (3, 'Blusa Bordada', 'blouse.jpg', 1200, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dictum commodo leo et malesuada. Donec consectetur porttitor consectetur.', 'Ropa', 'Mujer', 'blouse.jpg', 'blouse.jpg', NULL),
 (4, 'Guayabera', 'guayabera1.jpg', 1300, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dictum commodo leo et malesuada. Donec consectetur porttitor consectetur.', 'Ropa', 'Hombre', '', '', NULL),
 (5, 'Elefante', 'huichol.jpg', 1100, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dictum commodo leo et malesuada. Donec consectetur porttitor consectetur.', 'Huichol', '', '', '', NULL),
@@ -76,7 +89,11 @@ CREATE TABLE `registro` (
 
 INSERT INTO `registro` (`ID`, `Nombre`, `Correo`, `Contraseña`, `estatus`) VALUES
 (4, 'mohamed', 'as@gmail.com', '123456', 0),
-(5, 'said', 'said557@gmail.com', 'said12345', 1);
+(5, 'said', 'said557@gmail.com', 'said12345', 1),
+(6, 'Emmanuel', 'said1@gmail.com', 'said12345', 0),
+(7, 'Castillo ', 'said2@gmail.com', 'said12345', 0),
+(8, 'Marin', 'said3@gmail.com', 'said12345', 0),
+(9, 'said cm', 'said5@gmail.com', 'said12345', 0);
 
 -- --------------------------------------------------------
 
@@ -102,46 +119,7 @@ CREATE TABLE `reg_sellers` (
 --
 
 INSERT INTO `reg_sellers` (`IDregseller`, `Nombre`, `apellidos`, `nickname`, `lada`, `telefono`, `telefonoref`, `domicilio`, `postal`, `identificador`) VALUES
-(5, 'cristian', 'nahuatlato de leon', 'elnahua', 0, '2229259600', '7563704', 'elnahua', '72470', 'WhatsApp Image 2023-04-25 at 11.38.20 AM.jpeg'),
-(6, 'said', 'wuero chido', 'cokie69', 0, '2229259600', '7563704', 'oaxacanda 132', '54870', 'WhatsApp Image 2023-04-25 at 11.38.20 AM (1).jpeg'),
-(7, 'cristian', 'nahuatlato de leon', 'elnahua', 0, '2229259600', '7563704', 'Calle tlaxcala #10163, Col. popular castillotla', '72470', ''),
-(8, 'cristian', 'nahuatlato de leon', 'elnahua', 0, '2229259600', '7563704', 'Calle tlaxcala #10163, Col. popular castillotla', '72470', ''),
-(9, 'cristian2', 'nahuatlato de leon', 'elnahua', 0, '2229259600', '7563704', 'Calle tlaxcala #10163, Col. popular castillotla', '72470', 'pp.jpg'),
-(10, 'cristian5', 'nahuatlato de leon', 'elnahua', 0, '2229259600', '7563704', 'Calle tlaxcala #10163, Col. popular castillotla', '72470', 'cristian5-identificacion.jpeg'),
-(11, 'cristian6', 'nahuatlato de leon', 'elnahua', 0, '2229259600', '7563704', 'Calle tlaxcala #10163, Col. popular castillotla', '72470', 'cristian6-identificacion.jpeg'),
-(12, 'cristian7', 'nahuatlato de leon', 'elnahua', 0, '2229259600', '7563704', 'Calle tlaxcala #10163, Col. popular castillotla', '72470', ''),
-(13, 'cristian8', 'nahuatlato de leon', 'elnahua', 0, '2229259600', '7563704', 'Calle tlaxcala #10163, Col. popular castillotla', '72470', ''),
-(14, 'cristian9', 'nahuatlato de leon', 'elnahua', 0, '2229259600', '7563704', 'Calle tlaxcala #10163, Col. popular castillotla', '72470', ''),
-(15, 'cristian10', 'nahuatlato de leon', 'elnahua', 0, '2229259600', '7563704', 'Calle tlaxcala #10163, Col. popular castillotla', '72470', ''),
-(16, 'cristian11', 'nahuatlato de leon', 'elnahua', 0, '2229259600', '7563704', 'Calle tlaxcala #10163, Col. popular castillotla', '72470', 'cristian11-identificacion.jpeg'),
-(17, 'cristian12', 'nahuatlato de leon', 'elnahua', 0, '2229259600', '7563704', 'Calle tlaxcala #10163, Col. popular castillotla', '72470', 'cristian12-identificacion.jpeg'),
-(18, 'cristian13', 'nahuatlato de leon', 'elnahua', 0, '2229259600', '7563704', 'Calle tlaxcala #10163, Col. popular castillotla', '72470', 'cristian13-identificacion.jpeg'),
-(19, 'cristian14', 'nahuatlato de leon', 'elnahua', 0, '2229259600', '7563704', 'Calle tlaxcala #10163, Col. popular castillotla', '72470', 'cristian14-identificacion.jpeg'),
-(20, 'cristian16', 'nahuatlato de leon', 'elnahua', 0, '2229259600', '7563704', 'Calle tlaxcala #10163, Col. popular castillotla', '72470', 'cristian16-identificacion.jpeg'),
-(21, 'cristian17', 'nahuatlato de leon', 'elnahua', 0, '2229259600', '7563704', 'Calle tlaxcala #10163, Col. popular castillotla', '72470', 'cristian17-identificacion.jpeg'),
-(22, 'cristian17', 'nahuatlato de leon', 'elnahua', 0, '2229259600', '7563704', 'Calle tlaxcala #10163, Col. popular castillotla', '72470', 'cristian17-identificacion.jpeg'),
-(23, 'cristian19', 'nahuatlato de leon', 'elnahua', 0, '2229259600', '7563704', 'Calle tlaxcala #10163, Col. popular castillotla', '72470', ''),
-(24, 'cristian19', 'nahuatlato de leon', 'elnahua', 0, '2229259600', '7563704', 'Calle tlaxcala #10163, Col. popular castillotla', '72470', 'cristian19-identificacion.jpeg'),
-(25, 'cristian19', 'nahuatlato de leon', 'elnahua', 0, '2229259600', '7563704', 'Calle tlaxcala #10163, Col. popular castillotla', '72470', 'cristian19-identificacion.jpeg'),
-(26, 'cristian19', 'nahuatlato de leon', 'elnahua', 0, '2229259600', '7563704', 'Calle tlaxcala #10163, Col. popular castillotla', '72470', 'cristian19-identificacion.jpeg'),
-(27, 'cristian30', 'nahuatlato de leon', 'elnahua', 0, '2229259600', '7563704', 'Calle tlaxcala #10163, Col. popular castillotla', '72470', 'cristian30-identificacion.jpeg'),
-(28, 'nico', 'jejereje', 'nico123', 0, '2229259600', '7563704', 'Calle tlaxcala #10163, Col. popular castillotla', '72470', 'nico-identificacion.jpeg'),
-(29, 'cristian40', 'nahuatlato de leon', 'elnahua', 0, '2229259600', '7563704', 'Calle tlaxcala #10163, Col. popular castillotla', '72470', 'cristian40-identificacion.jpeg'),
-(30, 'beto', 'apellidos chidos', 'beto_artesano', 0, '2229259600', '7563704', 'Calle tlaxcala #10163, Col. popular castillotla', '72470', 'beto-identificacion.jpeg'),
-(31, 'cristian', 'nahuatlato de leon', 'elnahua23', 52, '2229259600', '7563704', 'Calle tlaxcala #10163, Col. popular castillotla', '72470', 'cristian-identificacion.jpeg'),
-(32, 'cristian', 'nahuatlato de leon', 'kcootza2', 52, '2229259600', '7563704', 'Calle tlaxcala #10163, Col. popular castillotla', '72470', 'cristian-identificacion.jpeg'),
-(33, 'cristian', 'nahuatlato de leon', 'kcootza', 5, '2229259600', '7563704', 'Calle tlaxcala #10163, Col. popular castillotla', '72470', 'kcootza-identificacion.jpeg'),
-(34, 'cristian', 'nahuatlato de leon', 'kcootza3', 2, '2229259600', '7563704', 'Calle tlaxcala #10163, Col. popular castillotla', '72470', 'kcootza3-identificacion.jpeg'),
-(35, 'cristian', 'nahuatlato de leon', 'kcootza5', 5, '2229259600', '7563704', 'Calle tlaxcala #10163, Col. popular castillotla', '72470', 'kcootza5-identificacion.jpeg'),
-(36, 'luz', 'nahuatlato de leon', 'kcootza6', 3, '2229259600', '7563704', 'Calle tlaxcala #10163, Col. popular castillotla', '72470', 'kcootza6-identificacion.jpeg'),
-(37, 'luz', 'nahuatlato de leon', 'kcootza7', 3, '2229259600', '7563704', 'Calle tlaxcala #10163, Col. popular castillotla', '72470', 'kcootza7-identificacion.jpeg'),
-(38, 'luz', 'nahuatlato de leon', 'kcootza8', 1, '2229259600', '7563704', 'Calle tlaxcala #10163, Col. popular castillotla', '72470', 'kcootza8-identificacion.jpeg'),
-(39, 'si', 'nahuatlato de leon', 'kcootza9', 1, '2229259600', '7563704', 'Calle tlaxcala #10163, Col. popular castillotla', '72470', 'kcootza9-identificacion.jpeg'),
-(40, 'luzz', 'nahuatlato de leon', 'kcootza10', 1, '2229259600', '7563704', 'Calle tlaxcala #10163, Col. popular castillotla', '72470', 'kcootza10-identificacion.jpeg'),
-(41, 'luzz', 'nahuatlato de leon', 'kcootza11', 1456, '2229259600', '7563704', 'Calle tlaxcala #10163, Col. popular castillotla', '72470', 'kcootza11-identificacion.jpeg'),
-(42, 'luzz', 'nahuatlato de leon', 'kcootza13', 222, '7563703', '7563704', 'Calle tlaxcala #10163, Col. popular castillotla', '72470', 'kcootza13-identificacion.jpeg'),
-(43, 'Said', 'Castillo Marin', 'Said557', 52, '2212054136', '2212054136', 'de las flores', '34850', 'Said557-identificacion.jpeg'),
-(44, 'Said', 'Castillo Marin', 'emma123', 52, '2212054136', '2212054136', 'de las flores', '12341', 'emma123-identificacion.jpeg');
+(45, 'Said', 'as', 'emma123', 52, '1221910', '2212054136', 'de las flores', '12341', 'emma123-identificacion.jpeg');
 
 -- --------------------------------------------------------
 
@@ -152,13 +130,30 @@ INSERT INTO `reg_sellers` (`IDregseller`, `Nombre`, `apellidos`, `nickname`, `la
 CREATE TABLE `stars` (
   `id_star` int(11) NOT NULL,
   `star` int(11) NOT NULL,
+  `comment` varchar(150) NOT NULL,
   `ID` int(11) DEFAULT NULL,
   `id_product` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Volcado de datos para la tabla `stars`
+--
+
+INSERT INTO `stars` (`id_star`, `star`, `comment`, `ID`, `id_product`) VALUES
+(2, 0, 'Good!', 6, 1),
+(4, 5, 'Nice!', 8, 1),
+(8, 5, 'i like it!', 7, 1);
+
+--
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`id_notif`),
+  ADD KEY `ID` (`ID`);
 
 --
 -- Indices de la tabla `products`
@@ -192,6 +187,12 @@ ALTER TABLE `stars`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `notifications`
+--
+ALTER TABLE `notifications`
+  MODIFY `id_notif` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `products`
 --
 ALTER TABLE `products`
@@ -201,23 +202,29 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT de la tabla `registro`
 --
 ALTER TABLE `registro`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `reg_sellers`
 --
 ALTER TABLE `reg_sellers`
-  MODIFY `IDregseller` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `IDregseller` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT de la tabla `stars`
 --
 ALTER TABLE `stars`
-  MODIFY `id_star` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_star` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `notifications`
+--
+ALTER TABLE `notifications`
+  ADD CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`ID`) REFERENCES `registro` (`ID`);
 
 --
 -- Filtros para la tabla `products`

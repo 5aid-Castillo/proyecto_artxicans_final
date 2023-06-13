@@ -18,11 +18,11 @@
                     id="name"
                     placeholder="Nombre"
                     title="Name only accepts letters and blank spaces"
-                    pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$"
                     value="<?php if(isset($_POST['name'])){echo $_POST['name']; }?>"
                     required
-                />
-            </div>
+                    />
+                </div>
+                <!-- pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$" -->
             <div class="grupo">
                 <input
                     type="email"

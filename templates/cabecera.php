@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="./styles/pages/reg_seller.css?v=2" />
     <link rel="stylesheet" href="./styles/pages/categories.css?v=2" />
     <link rel="stylesheet" href="./styles/pages/help.css?v=2" />
+    <link rel="stylesheet" href="./styles/pages/profile.css?v=2" />
     <link rel="stylesheet" href="index.css?v=2" />
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
@@ -101,24 +102,22 @@
             <li class="navItem"><a data-bs-toggle="modal" data-bs-target="#translateModal" style="cursor:pointer;">Idioma</a></li> 
             <?php if(@!$_SESSION['user']){?>
             <div class="headerBtn">
-              <!-- <a href="#login"> -->
+              
               <button class="loginBtn" onclick="location.href='login.php'">
                 <a>Ingresa</a>
               </button>
-              <!-- </a> -->
+              
               <button class="btn-header2 signBtn" onclick="location.href='signup.php'">
                 <a>Regístrate</a>
               </button>
             </div>
             <?php }else{?>
-              
-              <a href="user/profile.php" class="cuenta" style="display:flex;align-items:cneter;justify-content:center;">
+
+              <a href="profile.php" class="cuenta" style="display:flex;align-items:cneter;justify-content:center;">
               <svg xmlns="http://www.w3.org/2000/svg" width="40" height="25" fill="#ffff" style="cursor:pointer;"  class="bi bi-person-fill" viewBox="0 0 16 16">
                   <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
-              </svg>
-              
+              </svg>              
               </a>
-            
               <style>.cuenta{color:black; font-size:0.9rem; background:var(--second-alpha-color); padding:0 0.4rem; border-radius:10px}</style>
               <?php }?>
           </ul>
@@ -156,13 +155,4 @@
 </div>
 
 
-   <style>
-    .flag {
-    max-width: 20px;
-    width: 15px;
   
-}
-
-
-
-   </style>
