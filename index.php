@@ -71,7 +71,7 @@
         <div class="single-product">
         <a href="product.php?id_product=<?php echo $row['id_product'];?>" class='referencia'>
              <div class='imgDiv'>
-                <img src="assets/products/<?php echo $row['image'];?>"  alt="<?php echo $row['product']?>">
+                <img src="assets/products/<?php echo $row['image1'];?>"  alt="<?php echo $row['product']?>">
             </div>
             <div class="card-info">
                 <span class="product-title"><?php echo $row['product'];?></span>

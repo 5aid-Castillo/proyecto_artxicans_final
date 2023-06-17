@@ -244,12 +244,14 @@
 }
 
 
-.edit-button a .bx{
+.edit-button .bx{
   /* color:rgb(169, 169, 25) ;*/
   color:var(--second-alpha-color); 
+  cursor: pointer;
 }
-.delete-button a .bx{
+.delete-button .bx{
   color: rgb(185, 34, 34);
+  cursor: pointer;
 }
 .seller-buttons {
   display: grid;
@@ -261,12 +263,34 @@
 .choose-btn{
   margin: 2rem 2rem;
 }
+.form-resize{
+  width: 90vw !important;
+}
 
+
+.prod-btns{
+  display:flex; 
+  flex-wrap:wrap; 
+  justify-content:space-between;
+  flex-direction:row;
+  gap:0.7rem
+}
+
+@media screen and (max-width:282px){
+  .prod-btns{
+    margin: 1rem auto;
+    justify-content: center;
+  }
+}
 @media screen and (min-width:768px){
   .seller_true{
     margin-top: 2rem;
   }
   .t-p-seller{
     margin:2rem 2rem;
+  }
+  .form-resize{
+    margin-top: 2rem !important;
+    width: 50vw !important;
   }
 }

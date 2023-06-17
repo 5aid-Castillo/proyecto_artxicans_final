@@ -66,7 +66,6 @@
     <script src="js/Burgerbtn.js"></script>
     <script type="text/javascript" src="./js/Loader.js"></script>
     <script type="text/javascript" src="./js/Translate.js"></script>
-    <script type="text/javascript" src="./js/EnableButton.js"></script> 
     <script src="./styles/bootstrap-5.2.3-dist/js/bootstrap.min.js"></script>
   
    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
