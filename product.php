@@ -126,9 +126,11 @@
         <button type="button" class="btn btn-info" onclick="location.href=''">Agregar <i class="bx bxs-cart"></i></button>
         <button type="button" class="btn btn-success" onclick="location.href=''">Comprar ahora</button>
        
-        </div>
       </div>
     </div>
+    
+    <a href="./reports.php?id_product" style="display:flex;justify-content: end; padding :1rem;" class="report-container"><i class='bx bx-error bx-md'></i></a>
+  </div>
   </div>
 </div>
 <div class="comments">
@@ -265,13 +267,15 @@
          <?php        
              }//ifquery4
             }
-       /*    } */
+      
             /* ======== */
         while($data = mysqli_fetch_array($query2)){
           
       ?>
       <div class="card card-comment">
         <div class="card-body">
+          <div class="com-cointer"> 
+            
         <p class="stars-score"><strong><?php echo $data['Nombre']?></strong>&nbsp;&nbsp; 
               <?php
              
@@ -298,8 +302,59 @@
               ?>
              
         </p>
-        <p> <?php echo $data['comment']?></p>
         </div>
+          
+          
+          
+        <p > <?php echo $data['comment']?></p>
+        <!-- style="white-space:nowrap; text-overflow:ellipsis;overflow:hidden" -->
+      </div>
+      <div class="options-container">
+        <a  data-bs-toggle="modal" style="cursor:pointer" data-bs-target="#ModalReport-<?php echo $data['id_star']?>" class="report-container"><i class='bx bx-error bx-sm'></i></a>
+        
+        <!-- Modal to Report Comment-->
+        <div class="modal fade" id="ModalReport-<?php echo $data['id_star']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Reportar Comentario</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+              Algunas razones comunes por las que los clientes reportan opiniones:
+              <ul>
+                <li>Anuncios, promociones.</li>
+                <li>Insultos, comentarios sin sentido.</li>
+                <li>Acoso, blasfemias.</li>
+                <li>Lenguaje no apropiado.</li>
+            </ul>
+              Cuando obtengamos tu reporte, verificaremos si la opinion cumple con las normas de la comunidad.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <?php $id_p=$_GET['id_product'];
+          if(@!$_SESSION['user']){?>
+      <button type="button" class="btn btn-info" disabled>Enviar reporte</button>
+      <?php  }else{
+         $id_star = $data['id_star'];
+         $id_userx = $_SESSION['id'];
+        $check_report = mysqli_query($conn,"SELECT * FROM reports WHERE id_star = $id_star AND ID = $id_userx");
+       
+        if($check_report->num_rows > 0){?>
+          <button type="button" class="btn btn-info" disabled>Enviar reporte</button>
+
+          <?php  } else{  ?>
+            <button type="button" class="btn btn-info" onclick="location.href='./helpers/report-comment.php?id_r=<?php echo $data['id_star'];?>&id_product=<?php echo $id_p?>'">Enviar reporte</button>
+       
+      <?php }  }?>
+      </div>
+    </div>
+  </div>
+</div>
+        <!-- End Modal to Report Comment -->
+
+      </div>
+      
       </div>
     <?php }
         }else{
@@ -337,7 +392,6 @@
     </div>
   </div>
 </div>
-
 
 
 <?php 

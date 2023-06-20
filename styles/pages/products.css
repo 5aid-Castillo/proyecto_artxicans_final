@@ -137,7 +137,24 @@
     color: black;
     font-weight:700;
   }
-  
+  .options-container{
+    
+    display:flex;
+    justify-content:end;
+    padding :0.5rem;
+  }
+.report-container,.show-more-comment{
+  color: black;
+}  
+.report-container .bx{
+ color: rgb(90, 89, 89);
+}
+.report-container .bx:hover{
+  color: rgb(199, 0, 0);
+}
+.show-more-comment:hover{
+  color: var(--second-alpha-color);
+}
 
 
 @media screen and (min-width:851px){

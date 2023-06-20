@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-06-2023 a las 21:22:40
+-- Tiempo de generación: 20-06-2023 a las 17:07:01
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -43,13 +43,13 @@ CREATE TABLE `notifications` (
 CREATE TABLE `products` (
   `id_product` int(11) NOT NULL,
   `product` varchar(80) NOT NULL,
-  `image` varchar(80) NOT NULL,
+  `image1` varchar(80) NOT NULL,
   `price` int(11) NOT NULL,
   `description` varchar(250) NOT NULL,
   `category` varchar(30) NOT NULL,
-  `subcategory` varchar(40) NOT NULL,
-  `image2` varchar(100) NOT NULL,
-  `image3` varchar(100) NOT NULL,
+  `stock` int(11) NOT NULL,
+  `image2` varchar(30) NOT NULL,
+  `image3` varchar(30) NOT NULL,
   `ID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -57,17 +57,15 @@ CREATE TABLE `products` (
 -- Volcado de datos para la tabla `products`
 --
 
-INSERT INTO `products` (`id_product`, `product`, `image`, `price`, `description`, `category`, `subcategory`, `image2`, `image3`, `ID`) VALUES
-(1, 'Vestido Bordado', 'blackdress.jpg', 1500, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dictum commodo leo et malesuada. Donec consectetur porttitor consectetur.', 'Ropa', 'Mujer', 'blackdress.jpg', 'blackdress.jpg', 5),
-(2, 'Collar de Ambar', 'ambar.jpg', 450, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dictum commodo leo et malesuada. Donec consectetur porttitor consectetur.', 'Joyeria', '', 'ambar.jpg', 'ambar.jpg', 5),
-(3, 'Blusa Bordada', 'blouse.jpg', 1200, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dictum commodo leo et malesuada. Donec consectetur porttitor consectetur.', 'Ropa', 'Mujer', 'blouse.jpg', 'blouse.jpg', NULL),
-(4, 'Guayabera', 'guayabera1.jpg', 1300, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dictum commodo leo et malesuada. Donec consectetur porttitor consectetur.', 'Ropa', 'Hombre', '', '', NULL),
-(5, 'Elefante', 'huichol.jpg', 1100, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dictum commodo leo et malesuada. Donec consectetur porttitor consectetur.', 'Huichol', '', '', '', NULL),
-(6, 'Sombrero Mariachi', 'sombrero.jpg', 1800, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dictum commodo leo et malesuada. Donec consectetur porttitor consectetur.', 'Sombrero', '', '', '', NULL),
-(7, 'Gato Alebrije', 'alebrije1.jpg', 400, 'Gato alebrije de madera', 'Alebrije', '', '', '', NULL),
-(8, 'Armadillo gris', 'alebrije2.jpg', 600, 'Alebrije armadillo gris', 'Alebrije', '', '', '', NULL),
-(9, 'Corazon', 'corazon.jpg', 1500, 'Corazon de madera pintado como alebrije', 'Alebrije', '', '', '', NULL),
-(10, 'Alebrije de Coco', 'pepita.jpg', 2000, 'Pepita alebrije de la pelicula de coco', 'Alebrije', '', '', '', NULL);
+INSERT INTO `products` (`id_product`, `product`, `image1`, `price`, `description`, `category`, `stock`, `image2`, `image3`, `ID`) VALUES
+(2, 'Vestido Bordado', 'blackdress.jpg', 500, 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'Ropa', 5, 'blackdress.jpg', 'blackdress.jpg', NULL),
+(3, 'Collar de Ambar', 'ambar.jpg', 300, 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'Joyeria', 2, 'ambar.jpg', 'ambar.jpg', NULL),
+(4, 'Guayabera azul', 'guayabera1.jpg', 450, 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'Ropa', 5, 'guayabera1.jpg', 'guayabera1.jpg', NULL),
+(5, 'Corazon', 'corazon.jpg', 800, 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'Alebrije', 3, 'corazon.jpg', 'corazon.jpg', 5),
+(6, 'Armadillo gris', 'alebrije2.jpg', 600, 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'Alebrije', 4, 'alebrije2.jpg', 'alebrije2.jpg', NULL),
+(8, 'Blusa Bordada', 'blouse.jpg', 900, 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'Ropa', 2, 'blouse.jpg', 'blouse.jpg', NULL),
+(9, 'Gato Alebrije', 'alebrije1.jpg', 400, 'Gato alebrije de madera', 'Alebrije', 2, 'alebrije1.jpg', 'alebrije1.jpg', NULL),
+(11, 'Sombrero Mariachi', 'sombrero.jpg', 200, 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'Sombrero', 8, 'sombrero.jpg', 'sombrero.jpg', 5);
 
 -- --------------------------------------------------------
 
@@ -93,7 +91,8 @@ INSERT INTO `registro` (`ID`, `Nombre`, `Correo`, `Contraseña`, `estatus`) VALU
 (6, 'Emmanuel', 'said1@gmail.com', 'said12345', 0),
 (7, 'Castillo ', 'said2@gmail.com', 'said12345', 0),
 (8, 'Marin', 'said3@gmail.com', 'said12345', 0),
-(9, 'said cm', 'said5@gmail.com', 'said12345', 0);
+(9, 'said cm', 'said5@gmail.com', 'said12345', 0),
+(10, 'said', 'hola1@gmail.com', 'hola12345', 0);
 
 -- --------------------------------------------------------
 
@@ -119,7 +118,30 @@ CREATE TABLE `reg_sellers` (
 --
 
 INSERT INTO `reg_sellers` (`IDregseller`, `Nombre`, `apellidos`, `nickname`, `lada`, `telefono`, `telefonoref`, `domicilio`, `postal`, `identificador`) VALUES
-(45, 'Said', 'as', 'emma123', 52, '1221910', '2212054136', 'de las flores', '12341', 'emma123-identificacion.jpeg');
+(45, 'Said', 'as', 'emma123', 52, '1221910', '2212054136', 'de las flores', '12341', 'emma123-identificacion.jpeg'),
+(46, 'Said', 'Castillo Marin', 'Castillo 18', 52, '2212054136', '2212054136', 'de las flores', '12341', 'Castillo 18-identificacion.jpeg');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `reports`
+--
+
+CREATE TABLE `reports` (
+  `id_report` int(11) NOT NULL,
+  `report` varchar(150) NOT NULL,
+  `type` varchar(30) NOT NULL,
+  `ID` int(11) DEFAULT NULL,
+  `id_product` int(11) DEFAULT NULL,
+  `id_star` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `reports`
+--
+
+INSERT INTO `reports` (`id_report`, `report`, `type`, `ID`, `id_product`, `id_star`) VALUES
+(5, '', 'Comentario', 5, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -140,9 +162,10 @@ CREATE TABLE `stars` (
 --
 
 INSERT INTO `stars` (`id_star`, `star`, `comment`, `ID`, `id_product`) VALUES
-(2, 0, 'Good!', 6, 1),
-(4, 5, 'Nice!', 8, 1),
-(8, 5, 'i like it!', 7, 1);
+(1, 4, 'Good!', 6, 2),
+(2, 5, 'Nice!\r\n', 7, 2),
+(3, 0, 'Awesome!', 5, 2),
+(4, 0, 'Lorem ipsum dolor di falure dnaiowndawaiubd ojandiwadawbod wib 1290u091u30912 inwaodnaoidnaoiwndaow', 8, 2);
 
 --
 -- Índices para tablas volcadas
@@ -175,6 +198,15 @@ ALTER TABLE `reg_sellers`
   ADD PRIMARY KEY (`IDregseller`);
 
 --
+-- Indices de la tabla `reports`
+--
+ALTER TABLE `reports`
+  ADD PRIMARY KEY (`id_report`),
+  ADD KEY `ID` (`ID`),
+  ADD KEY `id_product` (`id_product`),
+  ADD KEY `id_star` (`id_star`);
+
+--
 -- Indices de la tabla `stars`
 --
 ALTER TABLE `stars`
@@ -196,25 +228,31 @@ ALTER TABLE `notifications`
 -- AUTO_INCREMENT de la tabla `products`
 --
 ALTER TABLE `products`
-  MODIFY `id_product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `registro`
 --
 ALTER TABLE `registro`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `reg_sellers`
 --
 ALTER TABLE `reg_sellers`
-  MODIFY `IDregseller` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `IDregseller` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+
+--
+-- AUTO_INCREMENT de la tabla `reports`
+--
+ALTER TABLE `reports`
+  MODIFY `id_report` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `stars`
 --
 ALTER TABLE `stars`
-  MODIFY `id_star` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_star` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas
@@ -231,6 +269,14 @@ ALTER TABLE `notifications`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`ID`) REFERENCES `registro` (`ID`);
+
+--
+-- Filtros para la tabla `reports`
+--
+ALTER TABLE `reports`
+  ADD CONSTRAINT `reports_ibfk_1` FOREIGN KEY (`ID`) REFERENCES `registro` (`ID`),
+  ADD CONSTRAINT `reports_ibfk_2` FOREIGN KEY (`id_product`) REFERENCES `products` (`id_product`),
+  ADD CONSTRAINT `reports_ibfk_3` FOREIGN KEY (`id_star`) REFERENCES `stars` (`id_star`);
 
 --
 -- Filtros para la tabla `stars`

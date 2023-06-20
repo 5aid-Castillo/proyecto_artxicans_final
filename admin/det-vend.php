@@ -111,10 +111,7 @@ include('../global/conexion.php');
 						</li>
 					</ul>
 				</div>
-				<!-- <a href="#" class="btn-download">
-					<i class='bx bxs-cloud-download' ></i>
-					<span class="text">Download PDF</span>
-				</a> -->
+				
 			</div>
 
 			<div class="table-data">
@@ -130,7 +127,7 @@ include('../global/conexion.php');
 					$query = mysqli_query($conn,"SELECT * FROM reg_sellers WHERE IDregseller = $id_v");
 					$data = mysqli_fetch_array($query);
 				?>
-					<img src="../user/files/<?php echo $data['identificador']?>" alt="identificacion" style="width:250px;height:140px">
+					<img src="../user/files<?php echo $data['identificador']?>" alt="identificacion" style="width:250px;height:140px">
                     <p><strong>Nombre:</strong>&nbsp;<?php echo $data['Nombre']?></p>
                     <p><strong>Apellidos:</strong>&nbsp;<?php echo $data['apellidos']?></p>
                     <p><strong>Nickname:</strong>&nbsp;<?php echo $data['nickname']?></p>
@@ -139,12 +136,12 @@ include('../global/conexion.php');
                     <p><strong>Referencia:</strong>&nbsp;<?php echo $data['telefonoref']?></p>
                     <p><strong>Domicilio:</strong>&nbsp;<?php echo $data['domicilio']?></p>
                     <p><strong>Codigo Postal:</strong>&nbsp;<?php echo $data['postal']?></p>
-                    <form method="POST" class="form-vend">
-						<!-- <?php include('./helpers/seller-action.php');?> -->
-					<textarea class="txt-send">Estimado usuario, tu solicitud para poder vender ha sido " ".</textarea>
+                    <form method="POST" class="form-vend" action="./helpers/seller-action.php?reg_seller=<?php echo $id_v?>">
+						
+					<textarea class="txt-send" placeholder="Escribe un mensaje al usuario."></textarea>
 					<input class="btn-choose decline" type="submit" name="reject-seller" value="Rechazar">
+					<input class="btn-choose accept" type="submit" name="accept-seller" value="Aceptar">
 				</form>
-				<input class="btn-choose accept" type="submit" name="accept-seller" value="Aceptar">
 				
                 </div>
 				</div>

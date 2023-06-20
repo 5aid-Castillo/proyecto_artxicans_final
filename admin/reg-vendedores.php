@@ -135,7 +135,7 @@ include('../global/conexion.php');
 						?>
 							<tr>
 								<td>
-									<img src="img/people.png">
+									<img src="../assets/utilities/usuario.png">
 									<p><?php echo $data['Nombre']?></p>
 								</td>
 								
