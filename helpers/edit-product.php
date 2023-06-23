@@ -33,7 +33,7 @@ if(@!$_SESSION['roll']){
             mysqli_query($conn, $sql);
         }
         if(empty($_FILES['imagen2']['name'])){
-
+                
         }else{
             $imagen2 = $_FILES['imagen2']['name'];
             $sql2 = "UPDATE products SET

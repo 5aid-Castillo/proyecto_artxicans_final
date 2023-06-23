@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-06-2023 a las 17:07:01
+-- Tiempo de generación: 23-06-2023 a las 16:42:03
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -58,14 +58,14 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id_product`, `product`, `image1`, `price`, `description`, `category`, `stock`, `image2`, `image3`, `ID`) VALUES
-(2, 'Vestido Bordado', 'blackdress.jpg', 500, 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'Ropa', 5, 'blackdress.jpg', 'blackdress.jpg', NULL),
-(3, 'Collar de Ambar', 'ambar.jpg', 300, 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'Joyeria', 2, 'ambar.jpg', 'ambar.jpg', NULL),
-(4, 'Guayabera azul', 'guayabera1.jpg', 450, 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'Ropa', 5, 'guayabera1.jpg', 'guayabera1.jpg', NULL),
+(2, 'Vestido Bordado', 'blackdress.jpg', 500, 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'Ropa', 5, 'blackdress.jpg', 'blackdress.jpg', 5),
+(3, 'Collar de Ambar', 'ambar.jpg', 300, 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'Joyeria', 2, 'ambar.jpg', 'ambar.jpg', 5),
+(4, 'Guayabera azul', 'guayabera1.jpg', 450, 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'Ropa', 5, 'guayabera1.jpg', 'guayabera1.jpg', 5),
 (5, 'Corazon', 'corazon.jpg', 800, 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'Alebrije', 3, 'corazon.jpg', 'corazon.jpg', 5),
-(6, 'Armadillo gris', 'alebrije2.jpg', 600, 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'Alebrije', 4, 'alebrije2.jpg', 'alebrije2.jpg', NULL),
-(8, 'Blusa Bordada', 'blouse.jpg', 900, 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'Ropa', 2, 'blouse.jpg', 'blouse.jpg', NULL),
-(9, 'Gato Alebrije', 'alebrije1.jpg', 400, 'Gato alebrije de madera', 'Alebrije', 2, 'alebrije1.jpg', 'alebrije1.jpg', NULL),
-(11, 'Sombrero Mariachi', 'sombrero.jpg', 200, 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'Sombrero', 8, 'sombrero.jpg', 'sombrero.jpg', 5);
+(6, 'Armadillo gris', 'alebrije2.jpg', 600, 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'Alebrije', 4, 'alebrije2.jpg', 'alebrije2.jpg', 5),
+(8, 'Blusa Bordada', 'blouse.jpg', 900, 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'Ropa', 2, 'blouse.jpg', 'blouse.jpg', 5),
+(9, 'Gato Alebrije', 'alebrije1.jpg', 400, 'Gato alebrije de madera', 'Alebrije', 2, 'alebrije1.jpg', 'alebrije1.jpg', 5),
+(11, 'Sombrero Rojo', 'sombrero.jpg', 200, 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'Sombrero', 8, 'sombrero.jpg', 'sombrero.jpg', 5);
 
 -- --------------------------------------------------------
 
@@ -110,16 +110,17 @@ CREATE TABLE `reg_sellers` (
   `telefonoref` varchar(20) NOT NULL,
   `domicilio` varchar(255) NOT NULL,
   `postal` varchar(10) NOT NULL,
-  `identificador` varchar(255) NOT NULL
+  `identificador` varchar(255) NOT NULL,
+  `solicitud` varchar(50) NOT NULL,
+  `ID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `reg_sellers`
 --
 
-INSERT INTO `reg_sellers` (`IDregseller`, `Nombre`, `apellidos`, `nickname`, `lada`, `telefono`, `telefonoref`, `domicilio`, `postal`, `identificador`) VALUES
-(45, 'Said', 'as', 'emma123', 52, '1221910', '2212054136', 'de las flores', '12341', 'emma123-identificacion.jpeg'),
-(46, 'Said', 'Castillo Marin', 'Castillo 18', 52, '2212054136', '2212054136', 'de las flores', '12341', 'Castillo 18-identificacion.jpeg');
+INSERT INTO `reg_sellers` (`IDregseller`, `Nombre`, `apellidos`, `nickname`, `lada`, `telefono`, `telefonoref`, `domicilio`, `postal`, `identificador`, `solicitud`, `ID`) VALUES
+(47, 'Said', 'Castillo Marin', 'Said557', 52, '2212054136', '2212054136', 'de las flores', '34850', 'Said557-identificacion.jpeg', 'Aprobada', 5);
 
 -- --------------------------------------------------------
 
@@ -141,7 +142,22 @@ CREATE TABLE `reports` (
 --
 
 INSERT INTO `reports` (`id_report`, `report`, `type`, `ID`, `id_product`, `id_star`) VALUES
-(5, '', 'Comentario', 5, 2, 1);
+(5, '', 'Comentario', 5, 2, 1),
+(9, 'hola', 'Producto', 5, 2, NULL),
+(10, 'hola', 'Producto', 5, 2, NULL),
+(11, 'Hola', 'Producto', 5, 8, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `sellers_data`
+--
+
+CREATE TABLE `sellers_data` (
+  `id_data` int(11) NOT NULL,
+  `description` varchar(150) NOT NULL,
+  `desc_art` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -195,7 +211,8 @@ ALTER TABLE `registro`
 -- Indices de la tabla `reg_sellers`
 --
 ALTER TABLE `reg_sellers`
-  ADD PRIMARY KEY (`IDregseller`);
+  ADD PRIMARY KEY (`IDregseller`),
+  ADD KEY `ID` (`ID`);
 
 --
 -- Indices de la tabla `reports`
@@ -205,6 +222,12 @@ ALTER TABLE `reports`
   ADD KEY `ID` (`ID`),
   ADD KEY `id_product` (`id_product`),
   ADD KEY `id_star` (`id_star`);
+
+--
+-- Indices de la tabla `sellers_data`
+--
+ALTER TABLE `sellers_data`
+  ADD PRIMARY KEY (`id_data`);
 
 --
 -- Indices de la tabla `stars`
@@ -240,13 +263,19 @@ ALTER TABLE `registro`
 -- AUTO_INCREMENT de la tabla `reg_sellers`
 --
 ALTER TABLE `reg_sellers`
-  MODIFY `IDregseller` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `IDregseller` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT de la tabla `reports`
 --
 ALTER TABLE `reports`
-  MODIFY `id_report` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_report` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT de la tabla `sellers_data`
+--
+ALTER TABLE `sellers_data`
+  MODIFY `id_data` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `stars`
@@ -269,6 +298,12 @@ ALTER TABLE `notifications`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`ID`) REFERENCES `registro` (`ID`);
+
+--
+-- Filtros para la tabla `reg_sellers`
+--
+ALTER TABLE `reg_sellers`
+  ADD CONSTRAINT `reg_sellers_ibfk_1` FOREIGN KEY (`ID`) REFERENCES `registro` (`ID`);
 
 --
 -- Filtros para la tabla `reports`

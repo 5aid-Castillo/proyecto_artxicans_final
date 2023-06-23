@@ -294,3 +294,108 @@
     width: 50vw !important;
   }
 }
+
+/* PayAccount */
+.payaccount{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+}
+.payaccount h2{
+  margin: 1rem;
+  text-align: center;
+}
+.payaccount h5{
+  margin: 1rem;
+  text-align: center;
+  color: rgb(71, 70, 70);
+}
+.form-account{
+  margin: 1rem;
+  width: 90vw;
+}
+.btns-save{
+  display: flex;
+  
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 1rem;
+
+}
+@media screen and (min-width:768px){
+  .form-account{
+    width: 50vw;
+  }
+}
+
+/* Profile seller */
+.profile-seller{
+  width: 100%;
+  height: 20vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0rem auto;
+}
+.profile-seller .overlay-seller{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: rgb(65, 63, 63);
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  mix-blend-mode: hard-light;
+}
+.profile-seller img{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  object-fit: cover;
+}
+.profileContent{
+
+  width: 100%;
+  height: max-content;
+  padding: 0 1.5rem 1rem;
+  display: flex;
+  /* row-gap: 1rem; */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin:0 auto;
+  color: white;
+  z-index: 100;
+}
+
+.title-profile{
+  font-weight: 500;
+  position: relative;
+  text-align: center;
+  margin: 0 auto;
+  /* margin: 3rem auto; */
+  font-size: 1.5rem;
+}
+.title-profile strong{
+  font-weight: bold;
+}
+.inf0-seller{
+  margin: 1rem 2rem;
+  display: grid;
+    /* Grid de ?cx?r */
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  
+}
+@media screen and (min-width:768px){
+  .title-profile{
+    font-size:2rem;
+  }
+  .profile-seller{
+    height: 30vh;
+  }
+}

@@ -4,7 +4,20 @@
   if(@!$_SESSION['user']){
     echo("<script>location.href = 'index.php';</script>");
   }
+  $id_user = $_SESSION['id'];
+  $query = mysqli_query($conn,"SELECT * FROM reg_sellers WHERE ID = $id_user");
+  if($query->num_rows > 0){?>
+  <div class="m-3 row justify-content-center align-items-center">
+    <div class="alert alert-success" role="alert" style="text-align:center">
+    <i class='bx bx-info-circle bx-sm'></i>&nbsp;Tu solicitud se ha mandado exitosamente y se encuentra en proceso de revision, en caso de que tu solicitud
+      sea aceptada o rechazada, te lo haremos saber en la opcion de <a href="#" class="alert-link">Notificaciones</a> y podras observar el estatus de tu solicitud.<br><br>
+      <i class='bx bx-check bx-lg  bx-flashing'></i>
+      
+    </div>
+  </div>
+<?php  }else{
 ?>
+
   
 <section class="reg_seller">
   <form action="" method="post" class="form-reg" enctype="multipart/form-data">
@@ -96,5 +109,6 @@
 </section>    
  
 <?php
+}
   include('templates/pie.php');
 ?> 

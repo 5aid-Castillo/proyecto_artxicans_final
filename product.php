@@ -1,9 +1,7 @@
 <?php 
     include('global/conexion.php');
     include('templates/cabecera.php');
-?>
-
-<?php
+    //obtener id del producto
     if(isset($_GET['id_product'])){
         $query = $conn ->query("SELECT * FROM products WHERE id_product = ".$_GET['id_product']) or die($conn->error);
 
@@ -17,26 +15,7 @@
         echo("<script>location.href = 'index.php';</script>");
     }
 ?>
-    <!-- <section class="product container">
-        <div class="detailsContainer">
-            <img src="assets/products/<?php echo $row[2];?>" alt="<?php echo $row[1];?>" class="col prodImage">
-            <div class="col prodDetails">
-                <p class="firsItem"><strong style="font-size:1.5rem; align-text:center;"><?php echo $row[1];?></strong></p>
-                <p><strong>Descripcion:</strong> &nbsp;<?php echo $row[4];?></p>
-                <p class="price"><strong>Precio:</strong> &nbsp;$<?php echo $row[3];?></p>
-                <p><strong>Categoria:</strong> &nbsp;<?php echo $row[5];?></p>
-                <p><strong>Vendido por:</strong> &nbsp; <a href="">Said</a></p>
-               
-                
-
-                <div class="choose">
-                    <button class="button-cart" onclick="location.href=''">Agregar &nbsp;<img src="./assets/utilities/cart.png" class="icon2"alt=""></button>
-                    <button class="button-buy" onclick="location.href='checkout.php'">Comprar</button>
-                </div> 
-            </div>
-        </div>
-        
-    </section> -->
+  <!-- Card para mostrar los datos del producto detallados. -->
     <div class="card mb-3 mx-auto card-product" style="width: 85vw;margin-top:2rem">
   <div class="row g-0">
     <div class="col-md-4">
@@ -67,22 +46,29 @@
   </button>
 </div>
     </div>
+    <?php 
+      //Consultar para obtener los datos del vendedor
+      $vendedor = mysqli_query($conn,"SELECT * FROM reg_sellers INNER JOIN products WHERE reg_sellers.ID = products.ID");
+      $resultVendedor = mysqli_fetch_array($vendedor);
+?>
     <div class="col-md-8">
       <div class="card-body">
         <h3 class="card-title"><?php echo $row[1]?></h3>
         <p class="card-text price">$<?php echo $row[3];?></p>
-        <p class="card-text"><small class="text-body-secondary">Vendido por:&nbsp;<strong>Said</strong></small></p>
+        <p class="card-text"><small class="text-body-secondary">Vendido por:&nbsp;<strong><a href="profile-seller.php?seller_data=<?php echo $resultVendedor['ID']?>"><?php echo $resultVendedor['nickname']?></a></strong></small></p>
         <p class="card-text"><?php echo $row[4]?></p>
         <p class="card-text stars-pointer">Calificación: 
           <?php 
+            //Consulta  para obtener los comentarios que compartan el mismo ID de producto
             $id_product =$row[0];
             $sql = mysqli_query($conn,"SELECT * FROM stars WHERE id_product = $id_product");
+            //Sumar todas las estrellas que sean del producto en el que nos encontramos.
             $sum =  mysqli_query($conn,"SELECT SUM(star) as score FROM stars WHERE id_product = $id_product");
             $score = mysqli_fetch_array($sum);
             $num = $sql->num_rows;
             if($num > 0){ 
             $total = $num * 5; 
-            /* $res = $total / 5; */  
+              
             
             $data1 = $num * 1; $data2 = $num * 2;$data3 = $num * 3; $data4 = $num * 4; $data5 = $num * 5;
             $counter = $score['score']; 
@@ -129,7 +115,43 @@
       </div>
     </div>
     
-    <a href="./reports.php?id_product" style="display:flex;justify-content: end; padding :1rem;" class="report-container"><i class='bx bx-error bx-md'></i></a>
+    <a  data-bs-toggle="modal" data-bs-target="#ModalProductReport-<?php echo $row[0]?>" style="display:flex;justify-content: end; padding :1rem;cursor:pointer;" class="report-container"><i class='bx bx-error bx-md'></i></a>
+    <div class="modal fade" id="ModalProductReport-<?php echo $row[0]?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Reportar Productos</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Informa el motivo de tu reporte para este producto.
+        <br><br>
+      <form method="POST" action="./helpers/report-product.php?id_p=<?php echo $row[0]?>"> 
+    <textarea class="form-control" id="answer" name="answer" placeholder="Escribe el motivo de tu reporte aquí." style="resize:none" rows="3"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <?php 
+          if(@!$_SESSION['user']){
+        ?>
+        <input type="submit" disabled name="send-report" class="btn btn-info" value="Reportar">
+        <?php }else{ 
+           $id_u = $_SESSION['id'];
+           $prod = $row[0]; 
+           $check_p_report = mysqli_query($conn,"SELECT * FROM reports WHERE ID = $id_u AND id_product = $prod");
+
+          if($check_p_report->num_rows > 0){?>
+          <input type="submit" disabled name="send-report" class="btn btn-info" value="Reportar">
+          <?php }else{?>
+            <input type="submit" name="send-report" class="btn btn-info" value="Reportar">
+          <?php }}?>
+
+      </div>
+    
+  </form>
+    </div>
+  </div>
+</div>
   </div>
   </div>
 </div>

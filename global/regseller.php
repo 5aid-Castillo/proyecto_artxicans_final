@@ -1,4 +1,5 @@
 <?php
+    $id_user =  $_SESSION['id'];
     if(isset($_POST['send-reg'])){
         # Se obtienen los datos del form 
     $nombre = $_POST['nombre'];         # 
@@ -74,7 +75,7 @@
                         }
                     else
                         {
-                            $sql = (" INSERT INTO reg_sellers VALUES(NULL,'$nombre','$apellidos','$nickname','$lada','$telefono','$telefono2','$domicilio','$postal','$name_imagen' )");
+                            $sql = (" INSERT INTO reg_sellers VALUES(NULL,'$nombre','$apellidos','$nickname','$lada','$telefono','$telefono2','$domicilio','$postal','$name_imagen','Pendiente','$id_user')");
                             $result = mysqli_query($conn,$sql);
                             if ($result)
                                 {

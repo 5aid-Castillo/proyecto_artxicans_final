@@ -14,7 +14,7 @@ $output= "";
         <div class="single-product">
             <a href="product.php?id_product='.$row['id_product'].'" class="referencia">
              <div class="imgDiv">
-                <img src="assets/products/'.$row['image'].'"  alt="'.$row['product'].'">
+                <img src="assets/products/'.$row['image1'].'"  alt="'.$row['product'].'">
             </div>
             <div class="card-info">
                 <span class="product-title">'.$row['product'].'</span>

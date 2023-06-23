@@ -16,6 +16,4 @@
             echo("<script>location.href = '../sell.php';</script>");
         }     
     }
-   
-
 ?>
