@@ -386,11 +386,66 @@
 }
 .inf0-seller{
   margin: 1rem 2rem;
-  display: grid;
-    /* Grid de ?cx?r */
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
+.ubicacion{
+  margin: 0.2rem 2rem;
+}
+.chat{
+  display: grid;
+  place-items: center;
+}
+.btn-edit-profile{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+
+}
+.input-size-1, .input-size{
+  width:90vw;
+}
+.input-size-lada{
+  width: 3rem;
+}
+.marg-1{
+  display: grid;
+  place-items: center;
+}
+.marg-2{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.seller-data-2{
+  display: grid;
+  place-items: center;
+}
+.btn-save{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+.txt-profile{
+  font-size: 1rem;
+  margin: 0.5rem auto;
+  text-align: center;
+  color: rgb(72, 71, 71);
+}
+.vendor-class{
+  font-size: 1.2rem;
+  color: rgb(67, 66, 66);
+  font-weight: bold;
+}
+
 @media screen and (min-width:768px){
   .title-profile{
     font-size:2rem;
@@ -398,4 +453,12 @@
   .profile-seller{
     height: 30vh;
   }
+  .input-size-1{
+    width: 30vw;
+  }
+  .input-size{
+    width: 50vw;
+  }
+  
+
 }

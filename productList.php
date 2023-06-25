@@ -65,7 +65,7 @@
       </div>
       <div class="mb-3">
         <label for="descripcion" class="form-label">Descripción</label>
-        <textarea class="form-control" id="descripcion" name="descripcion" rows="3"><?php echo $row['description']?></textarea>
+        <textarea class="form-control" id="descripcion" name="descripcion" rows="3" maxlength="100"><?php echo $row['description']?> </textarea>
       </div>
       <div class="mb-3">
         <label for="cantidad" class="form-label">Cantidad</label>

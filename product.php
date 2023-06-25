@@ -16,35 +16,35 @@
     }
 ?>
   <!-- Card para mostrar los datos del producto detallados. -->
-    <div class="card mb-3 mx-auto card-product" style="width: 85vw;margin-top:2rem">
+<div class="card mb-3 mx-auto card-product" style="width: 85vw;margin-top:2rem">
   <div class="row g-0">
     <div class="col-md-4">
-    <div id="carouselExampleIndicators" class="carousel slide">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="./assets/products/<?php echo $row[2]?>" class="d-block w-100 object-fit-cover " style="height:70vh" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="./assets/products/<?php echo $row[7]?>" class="d-block w-100 object-fit-cover" style="height:70vh" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="./assets/products/<?php echo $row[8]?>" class="d-block w-100 object-fit-cover " style="height:70vh" alt="...">
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
+      <div id="carouselExampleIndicators" class="carousel slide">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="./assets/products/<?php echo $row[2]?>" class="d-block w-100 object-fit-cover " style="height:70vh" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="./assets/products/<?php echo $row[7]?>" class="d-block w-100 object-fit-cover" style="height:70vh" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="./assets/products/<?php echo $row[8]?>" class="d-block w-100 object-fit-cover " style="height:70vh" alt="...">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
     </div>
     <?php 
       //Consultar para obtener los datos del vendedor
@@ -65,16 +65,19 @@
             //Sumar todas las estrellas que sean del producto en el que nos encontramos.
             $sum =  mysqli_query($conn,"SELECT SUM(star) as score FROM stars WHERE id_product = $id_product");
             $score = mysqli_fetch_array($sum);
+            # Para saber cuantas veces han comentado el producto, num rows cuenta los registros
             $num = $sql->num_rows;
+            # Si ha sido mas de una vez se saca el puntaje
             if($num > 0){ 
-            $total = $num * 5; 
-              
+            $total = $num * 5; # num es el numero total de las veces que se han votado en el producto, a esto le multiplicamos 5 para tener la calificacion perfecta del producto.
+            # Si son 10 votos, una calificacion perfecta serian 50 estrellas.  
             
+            # Con esto sacamos cuanto es el valor de cada dato y calcular el puntaje que los usuarios han votado.
             $data1 = $num * 1; $data2 = $num * 2;$data3 = $num * 3; $data4 = $num * 4; $data5 = $num * 5;
             $counter = $score['score']; 
-               
+            # Counter es la cantidad la suma total de las votaciones.   
             
-            if($counter >= $data5):
+            if($counter >= $data5): # Si la cantidad total de vots es mayor igual que la 5 parte de la calificacion TOTAL de estrellas, se mostrara una estrella reellena
             ?>
             <i class="bx bxs-star bx-5"></i><i class="bx bxs-star bx-5"></i><i class="bx bxs-star bx-5"></i><i class="bx bxs-star bx-5"></i><i class="bx bxs-star bx-5"></i>  
             <?php elseif($counter >= $data4):?>
@@ -88,11 +91,9 @@
             <?php endif;
             ?>
         (<?php echo $num?>)
-         <!--  <?php echo $total?>
-          <?php echo $counter;?>
-           <?php echo $res?>  -->
+        
 <?php
-            }else{?>
+            }else{ # SI no se ha votado alguna vez se muestran las estrallas vacias con puntaje de 0?>
             
           <i class="bx bxs-star bx-10"></i>
           <i class="bx bxs-star bx-10"></i>
@@ -108,7 +109,7 @@
         
         </p>
        
-        <div class="choose">
+      <div class="choose">
         <button type="button" class="btn btn-info" onclick="location.href=''">Agregar <i class="bx bxs-cart"></i></button>
         <button type="button" class="btn btn-success" onclick="location.href=''">Comprar ahora</button>
        
@@ -116,30 +117,31 @@
     </div>
     
     <a  data-bs-toggle="modal" data-bs-target="#ModalProductReport-<?php echo $row[0]?>" style="display:flex;justify-content: end; padding :1rem;cursor:pointer;" class="report-container"><i class='bx bx-error bx-md'></i></a>
-    <div class="modal fade" id="ModalProductReport-<?php echo $row[0]?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Reportar Productos</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
+  <div class="modal fade" id="ModalProductReport-<?php echo $row[0]?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Reportar Productos</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
         Informa el motivo de tu reporte para este producto.
         <br><br>
-      <form method="POST" action="./helpers/report-product.php?id_p=<?php echo $row[0]?>"> 
-    <textarea class="form-control" id="answer" name="answer" placeholder="Escribe el motivo de tu reporte aquí." style="resize:none" rows="3"></textarea>
+        <form method="POST" action="./helpers/report-product.php?id_p=<?php echo $row[0]?>"> 
+        <textarea class="form-control" id="answer" name="answer" placeholder="Escribe el motivo de tu reporte aquí." style="resize:none" rows="3"></textarea>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
         <?php 
-          if(@!$_SESSION['user']){
+          if(@!$_SESSION['user']){ # Si no es usuario logeado, se deshabilita el boton de reportar
         ?>
         <input type="submit" disabled name="send-report" class="btn btn-info" value="Reportar">
         <?php }else{ 
            $id_u = $_SESSION['id'];
            $prod = $row[0]; 
            $check_p_report = mysqli_query($conn,"SELECT * FROM reports WHERE ID = $id_u AND id_product = $prod");
-
+          # Checamos si en la tabla de reportes ya hay algun reporte del usuario que esta en session
+          # Si ya hay uno entonces se deshabilita el boton.
           if($check_p_report->num_rows > 0){?>
           <input type="submit" disabled name="send-report" class="btn btn-info" value="Reportar">
           <?php }else{?>
@@ -149,9 +151,9 @@
       </div>
     
   </form>
-    </div>
   </div>
-</div>
+      </div>
+    </div>
   </div>
   </div>
 </div>
@@ -175,7 +177,8 @@
           </p>
           <textarea class="form-control comment-text" id="exampleFormControlTextarea1" name="comment" rows="3" placeholder="Escribe un comentario." maxlength="100"></textarea>
           <div class="btn-send-com">
-          <?php if(@!$_SESSION['user']){?>
+          <?php if(@!$_SESSION['user']){ # Si no hay usuario logeado se muestran un mensaje que no puede comentar 
+            ?>
             
             <!-- <input type="submit" class="btn btn-info" name="send-comment"value="Publicar" disabled>
            -->
@@ -183,10 +186,10 @@
                  Inicia sesión para comentar.
             </div>
           
-            <?php }else{
+            <?php }else{  # Si esta un usuario logeado, se hace un consulta para ver si ya ha comentado
                  $id_user = $_SESSION['id'];
                  $query3 = mysqli_query($conn,"SELECT * FROM stars WHERE ID = $id_user AND id_product = $id_product");
-                 if($query3->num_rows > 0){
+                 if($query3->num_rows > 0){ # Si ya voto, entonces su boton de comentar se deshabilitara.
                    echo "<input class='btn btn-info' name='send-comment' value='Publicar' disabled>";
                    
                   }else{   
@@ -203,37 +206,44 @@
 
         <div class="all-comments">
       <?php 
-  
+        # Consulta para saber si hay comentarios en un producto
         $check = mysqli_query($conn,"SELECT * FROM registro INNER JOIN stars 
         ON registro.ID = stars.ID INNER JOIN products 
         ON stars.id_product = products.id_product 
         WHERE stars.id_product = $id_product");
           
         
-      
+      # Si hay comentarios hacer...
         if($check->num_rows > 0){ 
           
+          # Consultas de $query2 es dependiendo si el usuario esta logeado o no
           if(@!$_SESSION['user']){
+            # Consulta query2 si no esta logeado, esto para mostrar todos los comentarios del producto
             $query2 = mysqli_query($conn,"SELECT * FROM registro INNER JOIN stars 
             ON registro.ID = stars.ID INNER JOIN products 
             ON stars.id_product = products.id_product 
             WHERE stars.id_product = $id_product");  
           
           }else{
-            $query4 = mysqli_query($conn,"SELECT * FROM registro INNER JOIN stars 
-            ON registro.ID = stars.ID INNER JOIN products 
-            ON stars.id_product = products.id_product 
-            WHERE stars.id_product = $id_product AND stars.ID = $id_user ");
-    
+            /*  
+            Consulta query2 para que solo se muestren todos los comentarios, pero que no se muestre 
+            el de el usuario logeado y el comentario se muestre al inicio ($query4)
+            */ 
+          
             $query2 = mysqli_query($conn,"SELECT * FROM registro INNER JOIN stars 
             ON registro.ID = stars.ID INNER JOIN products 
             ON stars.id_product = products.id_product 
             WHERE stars.id_product = $id_product AND stars.ID <> $id_user");
-            
+            # Para identificar el comentario del usuario logeado
+            $query4 = mysqli_query($conn,"SELECT * FROM registro INNER JOIN stars 
+            ON registro.ID = stars.ID INNER JOIN products 
+            ON stars.id_product = products.id_product 
+            WHERE stars.id_product = $id_product AND stars.ID = $id_user ");
+            # Si el usuario logeado hizo un comentario en el producto
              if($query4->num_rows > 0){
             /* ============= */
 
-           
+              # Recopilamos y mostramos por separado el comentario del usuario logeado
               $data2 = mysqli_fetch_array($query4);
               ?>
                 
@@ -274,7 +284,7 @@
             </p>
             </div>
             <div class="icons-com">
-            
+            <!--  Boton para eliminar comentario del usuario propietario -->
             <i class='bx bxs-x-circle bx-sm del-icon-c' data-bs-toggle="modal" data-bs-target="#delComModal"></i>
 
             </div>
@@ -289,7 +299,7 @@
          <?php        
              }//ifquery4
             }
-      
+        # Mostramos todos los demas comentarios con su respectiva calificacion.
             /* ======== */
         while($data = mysqli_fetch_array($query2)){
           
@@ -355,17 +365,19 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
         <?php $id_p=$_GET['id_product'];
-          if(@!$_SESSION['user']){?>
-      <button type="button" class="btn btn-info" disabled>Enviar reporte</button>
-      <?php  }else{
+          if(@!$_SESSION['user']){ # Si el usuario no esta logeado, se bloquea el boton de reportar?>
+        <button type="button" class="btn btn-info" disabled>Enviar reporte</button>
+      <?php  }else{ # Si esta logeado...
          $id_star = $data['id_star'];
-         $id_userx = $_SESSION['id'];
-        $check_report = mysqli_query($conn,"SELECT * FROM reports WHERE id_star = $id_star AND ID = $id_userx");
-       
+         $id_userx = $_SESSION['id']; 
+        # Se checa si el usuario ya ha hecho un reporte al mismo comentario
+         $check_report = mysqli_query($conn,"SELECT * FROM reports WHERE id_star = $id_star AND ID = $id_userx");
+        # Si ya lo hizo, se bloquea el boton de reportar
         if($check_report->num_rows > 0){?>
           <button type="button" class="btn btn-info" disabled>Enviar reporte</button>
 
           <?php  } else{  ?>
+            <!-- Si no lo ha hecho se habilita y mandamos el id del comentario y el id del usuario que reporte a otro archivo php -->
             <button type="button" class="btn btn-info" onclick="location.href='./helpers/report-comment.php?id_r=<?php echo $data['id_star'];?>&id_product=<?php echo $id_p?>'">Enviar reporte</button>
        
       <?php }  }?>

@@ -26,7 +26,7 @@
               
         if($res['estatus'] == '1'){
       ?>
-  <button type="button" class="btn btn-outline-primary" onclick="location.href='./profile-seller.php?seller-data=<?php echo $id_user?>'">Perfil de vendedor</button>   
+  <button type="button" class="btn btn-outline-primary" onclick="location.href='./profile-seller.php?seller_data=<?php echo $id_user?>'">Perfil de vendedor</button>   
       <?php }?>   
       <button type="button" class="btn btn-info position-relative mt-4">
   Notificaciones
