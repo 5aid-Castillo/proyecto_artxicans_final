@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-06-2023 a las 16:42:03
+-- Tiempo de generación: 25-06-2023 a las 17:20:30
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -37,6 +37,25 @@ CREATE TABLE `notifications` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `pay_account`
+--
+
+CREATE TABLE `pay_account` (
+  `id_account` int(11) NOT NULL,
+  `token` varchar(100) NOT NULL,
+  `ID` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `pay_account`
+--
+
+INSERT INTO `pay_account` (`id_account`, `token`, `ID`) VALUES
+(1, 'gutctycuyctyc7t5res45s43a324astc', 5);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `products`
 --
 
@@ -66,6 +85,29 @@ INSERT INTO `products` (`id_product`, `product`, `image1`, `price`, `description
 (8, 'Blusa Bordada', 'blouse.jpg', 900, 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'Ropa', 2, 'blouse.jpg', 'blouse.jpg', 5),
 (9, 'Gato Alebrije', 'alebrije1.jpg', 400, 'Gato alebrije de madera', 'Alebrije', 2, 'alebrije1.jpg', 'alebrije1.jpg', 5),
 (11, 'Sombrero Rojo', 'sombrero.jpg', 200, 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'Sombrero', 8, 'sombrero.jpg', 'sombrero.jpg', 5);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `profile_comments`
+--
+
+CREATE TABLE `profile_comments` (
+  `id_comment` int(11) NOT NULL,
+  `star` int(11) NOT NULL,
+  `comment` varchar(150) NOT NULL,
+  `seller` int(11) DEFAULT NULL,
+  `ID` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `profile_comments`
+--
+
+INSERT INTO `profile_comments` (`id_comment`, `star`, `comment`, `seller`, `ID`) VALUES
+(1, 4, 'Awesome', 5, 9),
+(2, 5, 'Good', 5, 7),
+(3, 5, 'Nice', 5, 6);
 
 -- --------------------------------------------------------
 
@@ -156,8 +198,17 @@ INSERT INTO `reports` (`id_report`, `report`, `type`, `ID`, `id_product`, `id_st
 CREATE TABLE `sellers_data` (
   `id_data` int(11) NOT NULL,
   `description` varchar(150) NOT NULL,
-  `desc_art` varchar(150) NOT NULL
+  `desc_art` varchar(150) NOT NULL,
+  `location` varchar(150) NOT NULL,
+  `ID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `sellers_data`
+--
+
+INSERT INTO `sellers_data` (`id_data`, `description`, `desc_art`, `location`, `ID`) VALUES
+(1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'Oaxaca centro, Oaxaca.', 5);
 
 -- --------------------------------------------------------
 
@@ -181,7 +232,15 @@ INSERT INTO `stars` (`id_star`, `star`, `comment`, `ID`, `id_product`) VALUES
 (1, 4, 'Good!', 6, 2),
 (2, 5, 'Nice!\r\n', 7, 2),
 (3, 0, 'Awesome!', 5, 2),
-(4, 0, 'Lorem ipsum dolor di falure dnaiowndawaiubd ojandiwadawbod wib 1290u091u30912 inwaodnaoidnaoiwndaow', 8, 2);
+(4, 0, 'Lorem ipsum dolor di falure dnaiowndawaiubd ojandiwadawbod wib 1290u091u30912 inwaodnaoidnaoiwndaow', 8, 2),
+(5, 5, 'Good!', 6, 6),
+(6, 4, 'I like it', 6, 5),
+(7, 1, 'Nop', 6, 9),
+(8, 3, 'Nice!', 7, 3),
+(9, 5, 'I like it', 7, 6),
+(10, 4, 'Nice!', 7, 8),
+(11, 3, 'Good!', 8, 8),
+(12, 5, 'Awesome!', 8, 6);
 
 --
 -- Índices para tablas volcadas
@@ -195,11 +254,26 @@ ALTER TABLE `notifications`
   ADD KEY `ID` (`ID`);
 
 --
+-- Indices de la tabla `pay_account`
+--
+ALTER TABLE `pay_account`
+  ADD PRIMARY KEY (`id_account`),
+  ADD KEY `ID` (`ID`);
+
+--
 -- Indices de la tabla `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id_product`),
   ADD KEY `ID` (`ID`);
+
+--
+-- Indices de la tabla `profile_comments`
+--
+ALTER TABLE `profile_comments`
+  ADD PRIMARY KEY (`id_comment`),
+  ADD KEY `ID` (`ID`),
+  ADD KEY `seller` (`seller`);
 
 --
 -- Indices de la tabla `registro`
@@ -227,7 +301,8 @@ ALTER TABLE `reports`
 -- Indices de la tabla `sellers_data`
 --
 ALTER TABLE `sellers_data`
-  ADD PRIMARY KEY (`id_data`);
+  ADD PRIMARY KEY (`id_data`),
+  ADD KEY `ID` (`ID`);
 
 --
 -- Indices de la tabla `stars`
@@ -248,10 +323,22 @@ ALTER TABLE `notifications`
   MODIFY `id_notif` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `pay_account`
+--
+ALTER TABLE `pay_account`
+  MODIFY `id_account` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `products`
 --
 ALTER TABLE `products`
   MODIFY `id_product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT de la tabla `profile_comments`
+--
+ALTER TABLE `profile_comments`
+  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `registro`
@@ -275,13 +362,13 @@ ALTER TABLE `reports`
 -- AUTO_INCREMENT de la tabla `sellers_data`
 --
 ALTER TABLE `sellers_data`
-  MODIFY `id_data` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_data` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `stars`
 --
 ALTER TABLE `stars`
-  MODIFY `id_star` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_star` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Restricciones para tablas volcadas
@@ -294,10 +381,23 @@ ALTER TABLE `notifications`
   ADD CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`ID`) REFERENCES `registro` (`ID`);
 
 --
+-- Filtros para la tabla `pay_account`
+--
+ALTER TABLE `pay_account`
+  ADD CONSTRAINT `pay_account_ibfk_1` FOREIGN KEY (`ID`) REFERENCES `registro` (`ID`);
+
+--
 -- Filtros para la tabla `products`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`ID`) REFERENCES `registro` (`ID`);
+
+--
+-- Filtros para la tabla `profile_comments`
+--
+ALTER TABLE `profile_comments`
+  ADD CONSTRAINT `profile_comments_ibfk_1` FOREIGN KEY (`ID`) REFERENCES `registro` (`ID`),
+  ADD CONSTRAINT `profile_comments_ibfk_2` FOREIGN KEY (`seller`) REFERENCES `registro` (`ID`);
 
 --
 -- Filtros para la tabla `reg_sellers`
@@ -312,6 +412,12 @@ ALTER TABLE `reports`
   ADD CONSTRAINT `reports_ibfk_1` FOREIGN KEY (`ID`) REFERENCES `registro` (`ID`),
   ADD CONSTRAINT `reports_ibfk_2` FOREIGN KEY (`id_product`) REFERENCES `products` (`id_product`),
   ADD CONSTRAINT `reports_ibfk_3` FOREIGN KEY (`id_star`) REFERENCES `stars` (`id_star`);
+
+--
+-- Filtros para la tabla `sellers_data`
+--
+ALTER TABLE `sellers_data`
+  ADD CONSTRAINT `sellers_data_ibfk_1` FOREIGN KEY (`ID`) REFERENCES `registro` (`ID`);
 
 --
 -- Filtros para la tabla `stars`
