@@ -11,10 +11,10 @@
         echo("<script>location.href = './index.php';</script>");
     }
     # Datos de la tabla reg_sellers 
-    $query = mysqli_query($conn,"SELECT * FROM reg_sellers WHERE ID = $seller");
+    $query = mysqli_query($conn,"SELECT * FROM reg_sellers WHERE ID_registro = $seller");
     $data = mysqli_fetch_array($query);
     # Datos de la tablas sellers-data
-    $query2 = mysqli_query($conn,"SELECT * FROM sellers_data WHERE ID = $seller");
+    $query2 = mysqli_query($conn,"SELECT * FROM sellers_data WHERE ID_registro = $seller");
     $data2 = mysqli_fetch_array($query2);
 ?>
 <section class="edit-profile-seller">
@@ -55,7 +55,7 @@
             <div class="mb-3" >
                 <label for="info-art" class="form-label">Descripción acerca tus artesanías.</label>
                 <?php 
-                    if(empty($data['description'])){
+                    if(empty($data2['desc_art'])){
                 ?>
                 <textarea class="form-control input-size" name="info-art" style="resize:none" id="info-art" rows="3" maxlength="100"></textarea>
                 <?php }else{?>
@@ -65,7 +65,7 @@
             <div class="mb-3" >
                 <label for="info-art" class="form-label">Descripción sobre tú donde se encuentra tu lugar de trabajo.</label>
                 <?php 
-                    if(empty($data['ubicacion'])){
+                    if(empty($data2['location'])){
                 ?>
                 <textarea class="form-control input-size" name="location" style="resize:none" id="info-art" placeholder="Puedes añadir dirección, lugar y estado." rows="2" maxlength="50"></textarea>
                 <?php }else{?>

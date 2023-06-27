@@ -26,16 +26,23 @@
               
         if($res['estatus'] == '1'){
       ?>
-  <button type="button" class="btn btn-outline-primary" onclick="location.href='./profile-seller.php?seller_data=<?php echo $id_user?>'">Perfil de vendedor</button>   
+      <!-- Boton para perfil de vendedor -->
+      <button type="button" class="btn btn-outline-primary" onclick="location.href='./profile-seller.php?seller_data=<?php echo $id_user?>'">Perfil de vendedor</button>   
       <?php }?>   
-      <button type="button" class="btn btn-info position-relative mt-4">
-  Notificaciones
-  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-    99+
-    <span class="visually-hidden">unread messages</span>
-  </span>
-</button>
-   <!--  <button class="btn btn-outline-success" type="button">Editar perfil</button> --> 
+      <!-- Boton para notificaciones -->
+      <button type="button" class="btn btn-info position-relative mt-4" onclick="location.href='./notifications.php'">
+          Notificaciones
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+          <?php 
+            # Contamos todos las notificaciones del usuario
+            $query2 = mysqli_query($conn,"SELECT COUNT(*) total FROM notifications WHERE ID_registro = $id_user");
+            $data2 = mysqli_fetch_array($query2);
+            echo $data2['total'];
+          ?> 
+          <span class="visually-hidden">unread messages</span>
+          </span>
+      </button>
+   <button class="btn btn-outline-success mt-4" type="button">Editar datos</button>
   <button class="btn btn-danger mt-4" type="button" onclick="location.href='./global/logout.php'">Cerrar Sesion</button>
           
 </div>

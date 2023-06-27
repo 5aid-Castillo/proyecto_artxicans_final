@@ -445,6 +445,12 @@
   color: rgb(67, 66, 66);
   font-weight: bold;
 }
+.report-seller{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+}
 
 @media screen and (min-width:768px){
   .title-profile{

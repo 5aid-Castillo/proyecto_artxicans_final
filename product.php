@@ -1,6 +1,8 @@
 <?php 
     include('global/conexion.php');
     include('templates/cabecera.php');
+    include('global/querycart.php');
+    include('global/cart.php');
     //obtener id del producto
     if(isset($_GET['id_product'])){
         $query = $conn ->query("SELECT * FROM products WHERE id_product = ".$_GET['id_product']) or die($conn->error);
@@ -48,14 +50,14 @@
     </div>
     <?php 
       //Consultar para obtener los datos del vendedor
-      $vendedor = mysqli_query($conn,"SELECT * FROM reg_sellers INNER JOIN products WHERE reg_sellers.ID = products.ID");
+      $vendedor = mysqli_query($conn,"SELECT * FROM reg_sellers INNER JOIN products WHERE reg_sellers.ID_registro = products.ID_registro");
       $resultVendedor = mysqli_fetch_array($vendedor);
 ?>
     <div class="col-md-8">
       <div class="card-body">
         <h3 class="card-title"><?php echo $row[1]?></h3>
         <p class="card-text price">$<?php echo $row[3];?></p>
-        <p class="card-text"><small class="text-body-secondary">Vendido por:&nbsp;<strong><a href="profile-seller.php?seller_data=<?php echo $resultVendedor['ID']?>"><?php echo $resultVendedor['nickname']?></a></strong></small></p>
+        <p class="card-text"><small class="text-body-secondary">Vendido por:&nbsp;<strong><a href="profile-seller.php?seller_data=<?php echo $resultVendedor['ID_registro']?>"><?php echo $resultVendedor['nickname']?></a></strong></small></p>
         <p class="card-text"><?php echo $row[4]?></p>
         <p class="card-text stars-pointer">Calificación: 
           <?php 
@@ -108,12 +110,18 @@
           
         
         </p>
+        <form action="" method="post">
+        <input type="hidden" name="image" value="<?php echo openssl_encrypt($row[0],COD,KEY);?>"/>
+                    <input type="hidden" name="idproduct" value="<?php echo openssl_encrypt($row[0],COD,KEY);?>">
+                    <input type="hidden" name="product" value="<?php echo openssl_encrypt($row[1],COD,KEY);?>">
+                    <input type="hidden" name="precio" value="<?php echo openssl_encrypt($row[3],COD,KEY);?>">
+                    <input type="hidden" name="cantidad" value="<?php echo openssl_encrypt(1,COD,KEY);?>">
+        <div class="choose">
+          <button type="submit" class="btn btn-info" name="button-cart" value="Agregar" >Comprar <i class="bx bxs-cart"></i></button>
+        <!-- <button type="button" class="btn btn-success" onclick="location.href=''">Comprar ahora</button> -->
        
-      <div class="choose">
-        <button type="button" class="btn btn-info" onclick="location.href=''">Agregar <i class="bx bxs-cart"></i></button>
-        <button type="button" class="btn btn-success" onclick="location.href=''">Comprar ahora</button>
-       
-      </div>
+        </div>
+            </form>
     </div>
     
     <a  data-bs-toggle="modal" data-bs-target="#ModalProductReport-<?php echo $row[0]?>" style="display:flex;justify-content: end; padding :1rem;cursor:pointer;" class="report-container"><i class='bx bx-error bx-md'></i></a>
@@ -139,7 +147,7 @@
         <?php }else{ 
            $id_u = $_SESSION['id'];
            $prod = $row[0]; 
-           $check_p_report = mysqli_query($conn,"SELECT * FROM reports WHERE ID = $id_u AND id_product = $prod");
+           $check_p_report = mysqli_query($conn,"SELECT * FROM reports WHERE ID_registro = $id_u AND id_product = $prod");
           # Checamos si en la tabla de reportes ya hay algun reporte del usuario que esta en session
           # Si ya hay uno entonces se deshabilita el boton.
           if($check_p_report->num_rows > 0){?>
@@ -188,7 +196,7 @@
           
             <?php }else{  # Si esta un usuario logeado, se hace un consulta para ver si ya ha comentado
                  $id_user = $_SESSION['id'];
-                 $query3 = mysqli_query($conn,"SELECT * FROM stars WHERE ID = $id_user AND id_product = $id_product");
+                 $query3 = mysqli_query($conn,"SELECT * FROM stars WHERE ID_registro = $id_user AND id_product = $id_product");
                  if($query3->num_rows > 0){ # Si ya voto, entonces su boton de comentar se deshabilitara.
                    echo "<input class='btn btn-info' name='send-comment' value='Publicar' disabled>";
                    
@@ -208,7 +216,7 @@
       <?php 
         # Consulta para saber si hay comentarios en un producto
         $check = mysqli_query($conn,"SELECT * FROM registro INNER JOIN stars 
-        ON registro.ID = stars.ID INNER JOIN products 
+        ON registro.ID = stars.ID_registro INNER JOIN products 
         ON stars.id_product = products.id_product 
         WHERE stars.id_product = $id_product");
           
@@ -220,7 +228,7 @@
           if(@!$_SESSION['user']){
             # Consulta query2 si no esta logeado, esto para mostrar todos los comentarios del producto
             $query2 = mysqli_query($conn,"SELECT * FROM registro INNER JOIN stars 
-            ON registro.ID = stars.ID INNER JOIN products 
+            ON registro.ID = stars.ID_registro INNER JOIN products 
             ON stars.id_product = products.id_product 
             WHERE stars.id_product = $id_product");  
           
@@ -231,14 +239,14 @@
             */ 
           
             $query2 = mysqli_query($conn,"SELECT * FROM registro INNER JOIN stars 
-            ON registro.ID = stars.ID INNER JOIN products 
+            ON registro.ID = stars.ID_registro INNER JOIN products 
             ON stars.id_product = products.id_product 
-            WHERE stars.id_product = $id_product AND stars.ID <> $id_user");
+            WHERE stars.id_product = $id_product AND stars.ID_registro <> $id_user");
             # Para identificar el comentario del usuario logeado
             $query4 = mysqli_query($conn,"SELECT * FROM registro INNER JOIN stars 
-            ON registro.ID = stars.ID INNER JOIN products 
+            ON registro.ID = stars.ID_registro INNER JOIN products 
             ON stars.id_product = products.id_product 
-            WHERE stars.id_product = $id_product AND stars.ID = $id_user ");
+            WHERE stars.id_product = $id_product AND stars.ID_registro = $id_user ");
             # Si el usuario logeado hizo un comentario en el producto
              if($query4->num_rows > 0){
             /* ============= */
@@ -371,7 +379,7 @@
          $id_star = $data['id_star'];
          $id_userx = $_SESSION['id']; 
         # Se checa si el usuario ya ha hecho un reporte al mismo comentario
-         $check_report = mysqli_query($conn,"SELECT * FROM reports WHERE id_star = $id_star AND ID = $id_userx");
+         $check_report = mysqli_query($conn,"SELECT * FROM reports WHERE id_star = $id_star AND ID_registro = $id_userx");
         # Si ya lo hizo, se bloquea el boton de reportar
         if($check_report->num_rows > 0){?>
           <button type="button" class="btn btn-info" disabled>Enviar reporte</button>

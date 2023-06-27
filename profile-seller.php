@@ -4,7 +4,7 @@
     # Obtenemos el id del vendedor
     $user = $_GET['seller_data'];
     # Hacemos consulta para obtener los datos que se encuentran en la tabla reg_sellers
-    $query = mysqli_query($conn,"SELECT * FROM reg_sellers WHERE ID = $user");
+    $query = mysqli_query($conn,"SELECT * FROM reg_sellers WHERE ID_registro = $user");
     $data = mysqli_fetch_array($query);
     
 ?>
@@ -19,6 +19,53 @@
                     <h1 class="title-profile">Perfil de <strong><?php echo $data['nickname']?></strong></h1>
                 </div>
             </div>
+        </div>
+        <div class="report-seller">
+          <a  data-bs-toggle="modal" style="cursor:pointer" data-bs-target="#ModalReportSeller-<?php echo $user?>" class="report-container"><i class='bx bx-error bx-md'></i></a>
+             <!-- Modal to Report Seller-->
+             <div class="modal fade" id="ModalReportSeller-<?php echo $user?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Reportar Vendedor</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    Informa el motivo de tu reporte.
+                    <br><br>
+                    <form method="POST" action="./helpers/report-seller.php?id_seller=<?php echo $user?>"> 
+                    <textarea class="form-control" id="answer" name="answer" placeholder="Escribe el motivo de tu reporte aquí." style="resize:none" rows="3"></textarea> 
+                  </div>
+            <div class="modal-footer">
+              <!-- =========== -->
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+               <?php 
+                  if(@!$_SESSION['user']){ # Si el usuario no esta logeado, se bloquea el boton de reportar?>
+                <button type="button" class="btn btn-info" disabled>Enviar reporte</button>
+               <?php  }else{ # Si esta logeado...
+                  $com = mysqli_query($conn,"SELECT * FROM reports");
+                  $set = mysqli_fetch_array($com);
+                  $id_comment = $set['id_comment'];
+                  $id_userx = $_SESSION['id']; 
+                  # Se checa si el usuario ya ha hecho un reporte al mismo comentario
+                  $check_report = mysqli_query($conn,"SELECT * FROM reports WHERE seller = '$user' AND ID_registro = '$id_userx'");
+                  # Si ya lo hizo, se bloquea el boton de reportar
+                  if($check_report->num_rows > 0){?>
+                    <button type="button" class="btn btn-info" disabled>Enviar reporte</button>
+
+              <?php  } else{  ?>
+                <!-- Si no lo ha hecho se habilita y mandamos el id del comentario y el id del usuario que reporte a otro archivo php -->
+                  <input type="submit" name="send-report" class="btn btn-info" value="Enviar reporte">
+       
+              <?php }  }?> 
+<!-- ======== -->
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+        <!-- End Modal to Report Seller -->
+
         </div>
         <!-- Datos que solo vera el vendedor -->
         <?php
@@ -61,16 +108,51 @@
     if($id_user <> $user){?>
     <!-- Boton de chat  -->
     <div class="chat">
-            <p><strong>Contactar:</strong>&nbsp;&nbsp;<button type="button" class="btn btn-info position-relative">
-        Abrir chat
-        <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
-            <span class="visually-hidden">New alerts</span>
-        </span>
-        </button></p>   
+            <p><strong>Contactar:</strong>&nbsp;&nbsp;<button type="button" class="btn btn-info position-relative" data-bs-toggle="modal" data-bs-target="#ModalChat">
+               Abrir chat
+              <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+              <span class="visually-hidden">New alerts</span>
+              </span>
+              </button>
+            </p>   
+        <!-- Modal chat-->
+                <div class="modal fade" id="ModalChat" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
+                      <div class="modal-header p-3 mb-2 bg-color text-white">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel"><?php echo $data['nickname']?></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="seller-answer">
+                        <div class="alert alert-dark w-75" role="alert">
+                             A simple dark alert—check it out!  
+                        </div>
+                        </div>
+                        <div class="user-answer">
+                        <div class="alert alert-primary w-75 " role="alert">
+                            A simple primary alert—check it out!
+                        </div>
+                        </div>
+                        
+                      </div>
+                      
+                      <div class="modal-footer">
+                      <div class="mb-3 w-100">
+                          <textarea class="form-control" style="resize:none" id="exampleFormControlTextarea1" rows="3" placeholder="Escribe tu mensaje"></textarea>
+                      </div>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-success">Enviar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+        <!-- Modal chat -->
+
     </div>
     <?php }else{ # Si es igual las dos ID, entonces es el vendedor el que esta observando el perfil?>
         <div class="chat">
-            <p><strong></strong>&nbsp;&nbsp;<button type="button" class="btn btn-info position-relative">
+            <p><strong></strong>&nbsp;&nbsp;<button type="button" class="btn btn-info position-relative" onclick="location.href='./chats.php?seller_data=<?php echo $user?>'">
         Abrir mi lista de chats
         <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
             <span class="visually-hidden">New alerts</span>
@@ -79,7 +161,7 @@
     </div>
    <?php } }
         # Consultar en la tabla que se almacenan algunos datos del vendedor.
-        $query2 = mysqli_query($conn,"SELECT * FROM sellers_data WHERE ID = $user");
+        $query2 = mysqli_query($conn,"SELECT * FROM sellers_data WHERE ID_registro = $user");
         $data2 = mysqli_fetch_array($query2);
     
         #Verificamos si el vendedor ya cuenta con los datos de la tabla que usamos.
@@ -112,7 +194,7 @@
         <div class='mainContent grid' id="mainContent">
        <?php
         # Consulta para obtener todos los productos del vendedor;
-        $query3 = mysqli_query($conn,"SELECT * FROM products WHERE ID = $user");
+        $query3 = mysqli_query($conn,"SELECT * FROM products WHERE ID_registro = $user ORDER BY rand()");
         while($data3 = mysqli_fetch_array($query3)){
             $id_p = $data3['id_product'];
            
@@ -254,7 +336,7 @@
       
       <?php }else{  # Si esta un usuario logeado, se hace un consulta para ver si ya ha comentado
              $id_user = $_SESSION['id'];
-             $consulta = mysqli_query($conn,"SELECT * FROM profile_comments WHERE ID = $id_user AND seller = $user");
+             $consulta = mysqli_query($conn,"SELECT * FROM profile_comments WHERE ID_registro = $id_user AND seller = $user");
              if($consulta->num_rows > 0){ # Si ya voto, entonces su boton de comentar se deshabilitara.
                echo "<input class='btn btn-info' name='send-comment' value='Publicar' disabled>";
                
@@ -278,8 +360,8 @@
             # Si hay comentartios hacer...
             if($check->num_rows > 0){
             # Consulta apra proyectar todos los comentarios
-            $cons = mysqli_query($conn,"SELECT * FROM profile_comments INNER JOIN registro ON profile_comments.ID = registro.ID WHERE seller = '$user' ORDER BY rand()");
-                
+            $cons = mysqli_query($conn,"SELECT * FROM profile_comments INNER JOIN registro ON profile_comments.ID_registro = registro.ID WHERE seller = '$user' ORDER BY rand()");
+            
             while($res2 = mysqli_fetch_array($cons)){?>
 
     <div class="card card-comment">
@@ -315,7 +397,56 @@
         </div> 
         <p > <?php echo $res2['comment']?></p>
       </div>
-              
+           <!-- Modal -->
+           <div class="options-container">
+        <a  data-bs-toggle="modal" style="cursor:pointer" data-bs-target="#ModalReport-<?php echo $res2['id_comment']?>" class="report-container"><i class='bx bx-error bx-sm'></i></a>
+        
+        <!-- Modal to Report Comment-->
+        <div class="modal fade" id="ModalReport-<?php echo $res2['id_comment']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Reportar Comentario</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+              Algunas razones comunes por las que los clientes reportan opiniones:
+              <ul>
+                <li>Anuncios, promociones.</li>
+                <li>Insultos, comentarios sin sentido.</li>
+                <li>Acoso, blasfemias.</li>
+                <li>Lenguaje no apropiado.</li>
+            </ul>
+              Cuando obtengamos tu reporte, verificaremos si la opinion cumple con las normas de la comunidad.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <?php 
+          if(@!$_SESSION['user']){ # Si el usuario no esta logeado, se bloquea el boton de reportar?>
+        <button type="button" class="btn btn-info" disabled>Enviar reporte</button>
+      <?php  }else{ # Si esta logeado...
+         $id_comment = $res2['id_comment'];
+         $id_userx = $_SESSION['id']; 
+        # Se checa si el usuario ya ha hecho un reporte al mismo comentario
+         $check_report = mysqli_query($conn,"SELECT * FROM reports WHERE id_comment = $id_comment AND ID_registro = $id_userx");
+        # Si ya lo hizo, se bloquea el boton de reportar
+        if($check_report->num_rows > 0){?>
+          <button type="button" class="btn btn-info" disabled>Enviar reporte</button>
+
+          <?php  } else{  ?>
+            <!-- Si no lo ha hecho se habilita y mandamos el id del comentario y el id del usuario que reporte a otro archivo php -->
+            <button type="button" class="btn btn-info" onclick="location.href='./helpers/report-profile-com.php?id_r=<?php echo $res2['id_comment'];?>&seller=<?php echo $user?>'">Enviar reporte</button>
+       
+      <?php }  }?>
+      </div>
+    </div>
+  </div>
+</div>
+        <!-- End Modal to Report Comment -->
+
+      </div>
+           
+           <!-- Modal -->
       </div>
 
             <?php } #while

@@ -5,7 +5,7 @@
     echo("<script>location.href = 'index.php';</script>");
   }
   $id_user = $_SESSION['id'];
-  $query = mysqli_query($conn,"SELECT * FROM reg_sellers WHERE ID = $id_user");
+  $query = mysqli_query($conn,"SELECT * FROM reg_sellers WHERE ID_registro = $id_user");
   if($query->num_rows > 0){?>
   <div class="m-3 row justify-content-center align-items-center">
     <div class="alert alert-success" role="alert" style="text-align:center">

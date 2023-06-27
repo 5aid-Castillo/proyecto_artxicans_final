@@ -9,12 +9,12 @@
     font-weight: bold;
     color: var(--second-alpha-color);
 }
-    .profile{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
+.profile{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
 /* .profile-btn-1{
     display: block;
 }
@@ -29,3 +29,16 @@
         display: block;
     }
 } */
+
+
+/* Notifications */
+.table-notifications{
+    width: 95vw;
+    margin: 0 auto;
+}
+@media screen and (min-width:768px){
+    .table-notifications{
+        width: 80vw;
+    }   
+    
+}

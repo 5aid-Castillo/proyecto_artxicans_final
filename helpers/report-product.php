@@ -7,7 +7,9 @@
     $id_user = $_SESSION['id'];
     $product = $_GET['id_p'];
     $answer = $_POST['answer'];
-    mysqli_query($conn,"INSERT INTO reports VALUES(NULL,'$answer','Producto','$id_user','$product',NULL)");
+    # Insertamos los datos de reporte de producto
+    # Los campos que esten en NULL significa que no es necesario ser llenados ya que no se cuenta con algun valor.
+    mysqli_query($conn,"INSERT INTO reports VALUES(NULL,'$answer','Producto','$id_user','$product',NULL,NULL,NULL)");
     echo("<script>location.href = '../product.php?id_product=".$product."';</script>");
 
 

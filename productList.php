@@ -5,7 +5,7 @@
       echo("<script>location.href = './index.php';</script>");
     } 
     $id_user = $_SESSION['id'];
-    $query = mysqli_query($conn,"SELECT * FROM products WHERE ID = $id_user");
+    $query = mysqli_query($conn,"SELECT * FROM products WHERE ID_registro = $id_user");
      
 ?>
 <div class="t-p-seller"> 

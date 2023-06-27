@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="./styles/pages/categories.css?v=2" />
     <link rel="stylesheet" href="./styles/pages/help.css?v=2" />
     <link rel="stylesheet" href="./styles/pages/profile.css?v=2" />
+    <link rel="stylesheet" href="./styles/pages/chats.css?v=2" />
     <link rel="stylesheet" href="index.css?v=2" />
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
@@ -96,7 +97,7 @@
               </ul>
             </li>
             <li class="navItem mob-categories"><a href="categories.php">Categorias</a></li>
-            <li class="navItem"><a href="">Mis Compras</a></li>
+            <li class="navItem"><a href="cart.php">Carrito(<?php echo (empty($_SESSION['cart']))?0: count($_SESSION['cart']); ?>)</a></li>
             <li class="navItem"><a href="helpers/validate-seller.php">Vender</a></li>
             <li class="navItem"><a href="help.php">Ayuda</a></li>
             <li class="navItem"><a data-bs-toggle="modal" data-bs-target="#translateModal" style="cursor:pointer;">Idioma</a></li> 
