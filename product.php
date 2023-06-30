@@ -50,13 +50,15 @@
     </div>
     <?php 
       //Consultar para obtener los datos del vendedor
-      $vendedor = mysqli_query($conn,"SELECT * FROM reg_sellers INNER JOIN products WHERE reg_sellers.ID_registro = products.ID_registro");
+      $p = $row[9];
+      $vendedor = mysqli_query($conn,"SELECT * FROM reg_sellers WHERE ID_registro = $p");
       $resultVendedor = mysqli_fetch_array($vendedor);
 ?>
     <div class="col-md-8">
       <div class="card-body">
         <h3 class="card-title"><?php echo $row[1]?></h3>
         <p class="card-text price">$<?php echo $row[3];?></p>
+        
         <p class="card-text"><small class="text-body-secondary">Vendido por:&nbsp;<strong><a href="profile-seller.php?seller_data=<?php echo $resultVendedor['ID_registro']?>"><?php echo $resultVendedor['nickname']?></a></strong></small></p>
         <p class="card-text"><?php echo $row[4]?></p>
         <p class="card-text stars-pointer">Calificación: 
