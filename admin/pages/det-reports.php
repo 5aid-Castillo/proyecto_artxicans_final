@@ -1,73 +1,76 @@
 <!DOCTYPE html>
-
+<?php 
+include('../../global/conexion.php');
+?>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="icon" type="image/png" href="../assets/logo/carta-a (4).png"/>
+	<link rel="icon" type="image/png" href="../../assets/logo/carta-a (4).png"/>
 	<!-- Boxicons -->
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 	<!-- My CSS -->
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="../style.css">
+	<link rel="stylesheet" href="../estilos.css">
 
-	<title>Registro de Productos</title>
+	<title>Artxicans -Panel</title>
 </head>
 <body>
 
 
 	<!-- SIDEBAR -->
 	<section id="sidebar">
-		<a href="./index.php" class="brand">
+		<a href="../index.php" class="brand">
 			<i class='bx bxs-font-color'></i>
 			<span class="text">Artxicans</span>
 		</a>
 		<ul class="side-menu top">
 			<li >
-				<a href="./index.php">
+				<a href="../index.php">
 					<i class='bx bxs-home' ></i>
 					<span class="text">Inicio</span>
 				</a>
 			</li>
 			<li>
-				<a href="./orders.php">
+				<a href="../orders.php">
 					<i class='bx bxs-shopping-bag-alt' ></i>
 					<span class="text">Pedidos</span>
 				</a>
 			</li>
 			<li>
-				<a href="./products.php">
+				<a href="../products.php">
 					<i class='bx bxs-package'></i>
 					<span class="text">Productos</span>
 				</a>
 			</li> 
 			<li>
-				<a href="./sellers.php">
+				<a href="../sellers.php">
 					<i class='bx bxs-user' ></i>
 					<span class="text">Vendedores</span>
 				</a>
 			</li>
 			<li>
-				<a href="./reports.php">
+				<a href="../reports.php">
 					<i class='bx bxs-error' ></i>
 					<span class="text">Reportes</span>
 				</a>
 			</li>
 		</ul>
 		<ul class="side-menu">
-			<li >
-				<a href="./reg-vendedores.php">
+			<li class="active">
+				<a href="../reg-vendedores.php">
 					<i class='bx bxs-user-check' ></i>
 					<span class="text">Nuevos vendedores</span>
 				</a>
 			</li>
-			<li class="active">
-				<a href="./reg-productos.php">
+			<li>
+				<a href="../reg-productos.php">
 					<i class='bx bxs-select-multiple' ></i>
 					<span class="text">Nuevos productos</span>
 				</a>
 			</li>
 			<li>
-				<a href="../global/logout.php" class="logout">
+				<a href="../../global/logout.php" class="logout">
 					<i class='bx bxs-log-out-circle' ></i>
 					<span class="text">Salir</span>
 				</a>
@@ -95,48 +98,23 @@
 					<h1></h1>
 					<ul class="breadcrumb">
 						<li>
-							<a href="#">Menu</a>
+							<a href="../index.php">Menu</a>
 						</li>
 						<li><i class='bx bx-chevron-right' ></i></li>
 						<li>
-							<a class="active" href="./reg-productos.php">Registro de productos</a>
+							<a class="active" href="../reports.php">Reportes</a>
+						</li>
+						<li><i class='bx bx-chevron-right' ></i></li>
+						<li>
+							<a class="active" href="../pages/det-reports.php">Reporte</a>
 						</li>
 					</ul>
 				</div>
 				
 			</div>
-
-			<div class="table-data">
-				<div class="order">
-					<div class="head">
-						<h3>Solicitud de productos</h3>
-					</div>
-					<table>
-						<thead>
-							<tr>
-								<th>Usuario</th>
-								<th>Producto</th>
-								<th>Información</th>
-							</tr>
-						</thead>
-						<tbody>
-							
-							<tr>
-								<td>
-									<img src="../assets/utilities/caja.png">
-									<p>John Doe</p>
-								</td>
-								<td>Alebrije</td>
-								<td><span class="status completed">Ver info</span></td>
-							</tr>
-							
-							
-						</tbody>
-					</table>
-				</div>
-			
-
-
+            <?php
+		        include ('../helpers/Sdet-rep.php');  
+		?>
 		
 		</main>
 		<!-- MAIN -->
@@ -144,6 +122,6 @@
 	<!-- CONTENT -->
 	
 
-	<script src="script.js"></script>
+	<script src="../script.js"></script>
 </body>
 </html>

@@ -9,7 +9,7 @@
     <form action="" method="post" class="form-reg form-resize" enctype="multipart/form-data" style="margin-top:2">
 
 <h1 class="text-center">Registro de producto</h1>
-
+<?php include 'global/Sadd-product.php'; ?>
 <!-- ProgressBar -->
 
 <div class="progressbar">

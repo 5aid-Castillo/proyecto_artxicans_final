@@ -10,7 +10,7 @@
 	<!-- My CSS -->
 	<link rel="stylesheet" href="style.css">
 
-	<title>Registro de Productos</title>
+	<title>Artxicans -Panel</title>
 </head>
 <body>
 
@@ -28,7 +28,7 @@
 					<span class="text">Inicio</span>
 				</a>
 			</li>
-			<li>
+			<li class="active">
 				<a href="./orders.php">
 					<i class='bx bxs-shopping-bag-alt' ></i>
 					<span class="text">Pedidos</span>
@@ -54,13 +54,13 @@
 			</li>
 		</ul>
 		<ul class="side-menu">
-			<li >
+			<li>
 				<a href="./reg-vendedores.php">
 					<i class='bx bxs-user-check' ></i>
 					<span class="text">Nuevos vendedores</span>
 				</a>
 			</li>
-			<li class="active">
+			<li>
 				<a href="./reg-productos.php">
 					<i class='bx bxs-select-multiple' ></i>
 					<span class="text">Nuevos productos</span>
@@ -99,35 +99,36 @@
 						</li>
 						<li><i class='bx bx-chevron-right' ></i></li>
 						<li>
-							<a class="active" href="./reg-productos.php">Registro de productos</a>
+							<a class="active" href="./reg-vendedores.php">Pedidos</a>
 						</li>
 					</ul>
 				</div>
-				
+			
 			</div>
 
 			<div class="table-data">
 				<div class="order">
 					<div class="head">
-						<h3>Solicitud de productos</h3>
+						<h3>Lista de Pedidos</h3>
+						
 					</div>
 					<table>
 						<thead>
 							<tr>
 								<th>Usuario</th>
-								<th>Producto</th>
 								<th>Información</th>
 							</tr>
 						</thead>
 						<tbody>
-							
+
+					
 							<tr>
 								<td>
-									<img src="../assets/utilities/caja.png">
-									<p>John Doe</p>
+									<img src="../assets/utilities/usuario.png">
+									<p>Hola</p>
 								</td>
-								<td>Alebrije</td>
-								<td><span class="status completed">Ver info</span></td>
+								
+								<td><a href=""><span class="status completed">Ver info</span></a></td>
 							</tr>
 							
 							

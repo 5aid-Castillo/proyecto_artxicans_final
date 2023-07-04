@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 
+<?php 
+
+include('../global/conexion.php');
+?>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -10,7 +14,7 @@
 	<!-- My CSS -->
 	<link rel="stylesheet" href="style.css">
 
-	<title>Registro de Productos</title>
+	<title>Artxicans -Panel</title>
 </head>
 <body>
 
@@ -40,7 +44,7 @@
 					<span class="text">Productos</span>
 				</a>
 			</li> 
-			<li>
+			<li class="active">
 				<a href="./sellers.php">
 					<i class='bx bxs-user' ></i>
 					<span class="text">Vendedores</span>
@@ -54,13 +58,13 @@
 			</li>
 		</ul>
 		<ul class="side-menu">
-			<li >
+			<li>
 				<a href="./reg-vendedores.php">
 					<i class='bx bxs-user-check' ></i>
 					<span class="text">Nuevos vendedores</span>
 				</a>
 			</li>
-			<li class="active">
+			<li>
 				<a href="./reg-productos.php">
 					<i class='bx bxs-select-multiple' ></i>
 					<span class="text">Nuevos productos</span>
@@ -99,37 +103,41 @@
 						</li>
 						<li><i class='bx bx-chevron-right' ></i></li>
 						<li>
-							<a class="active" href="./reg-productos.php">Registro de productos</a>
+							<a class="active" href="./reg-vendedores.php">Vendedores</a>
 						</li>
 					</ul>
 				</div>
-				
+			
 			</div>
 
 			<div class="table-data">
 				<div class="order">
 					<div class="head">
-						<h3>Solicitud de productos</h3>
+						<h3>Lista de Vendedores</h3>
+						
 					</div>
 					<table>
 						<thead>
 							<tr>
 								<th>Usuario</th>
-								<th>Producto</th>
-								<th>Información</th>
+								<th>Detalles</th>
 							</tr>
 						</thead>
 						<tbody>
-							
+                        <?php 
+                        $query = mysqli_query($conn,"SELECT * FROM reg_sellers WHERE solicitud = 'Aprobado'");
+                        while($data = mysqli_fetch_array($query)){
+                        ?>
+					
 							<tr>
 								<td>
-									<img src="../assets/utilities/caja.png">
-									<p>John Doe</p>
+									<img src="../assets/utilities/usuario.png">
+									<p><?php echo $data['nickname']?></p>
 								</td>
-								<td>Alebrije</td>
-								<td><span class="status completed">Ver info</span></td>
+								
+								<td><a href=""><span class="status completed">Ver info</span></a></td>
 							</tr>
-							
+						<?php }?>
 							
 						</tbody>
 					</table>

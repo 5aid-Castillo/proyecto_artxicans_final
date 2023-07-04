@@ -112,8 +112,11 @@
           
         
         </p>
+
+      
         <form action="" method="post">
-        <input type="hidden" name="image" value="<?php echo openssl_encrypt($row[0],COD,KEY);?>"/>
+
+        <input type="hidden" name="image" value="<?php echo openssl_encrypt($row[2],COD,KEY);?>"/>
                     <input type="hidden" name="idproduct" value="<?php echo openssl_encrypt($row[0],COD,KEY);?>">
                     <input type="hidden" name="product" value="<?php echo openssl_encrypt($row[1],COD,KEY);?>">
                     <input type="hidden" name="precio" value="<?php echo openssl_encrypt($row[3],COD,KEY);?>">

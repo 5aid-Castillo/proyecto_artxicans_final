@@ -1,9 +1,13 @@
 <?php 
     include('../global/conexion.php');
     session_start();
-    $user = base64_decode($_GET['chat']); //7
+    # Mandar mensajes de parte del vendedor
+    # Obtenemos a que usuario va dirigido
+    $user = base64_decode($_GET['chat']);
+    # Boton enviar 
     if($_POST['sendMessage']){
-        $id_user = $_SESSION['id']; // 5
+        
+        $id_user = $_SESSION['id']; 
         $message = $_POST['message'];
         
             mysqli_query($conn,"INSERT INTO chats VALUES(NULL,'$message','$id_user','$user','Seller')");

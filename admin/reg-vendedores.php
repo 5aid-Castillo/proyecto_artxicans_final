@@ -33,25 +33,25 @@ include('../global/conexion.php');
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="./orders.php">
 					<i class='bx bxs-shopping-bag-alt' ></i>
 					<span class="text">Pedidos</span>
 				</a>
 			</li>
 			<li>
-				<a href="#">
-					<i class='bx bxs-send' ></i>
-					<span class="text">Envios</span>
+				<a href="./products.php">
+					<i class='bx bxs-package'></i>
+					<span class="text">Productos</span>
 				</a>
-			</li>
+			</li> 
 			<li>
-				<a href="#">
+				<a href="./sellers.php">
 					<i class='bx bxs-user' ></i>
 					<span class="text">Vendedores</span>
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="./reports.php">
 					<i class='bx bxs-error' ></i>
 					<span class="text">Reportes</span>
 				</a>
@@ -107,10 +107,7 @@ include('../global/conexion.php');
 						</li>
 					</ul>
 				</div>
-				<!-- <a href="#" class="btn-download">
-					<i class='bx bxs-cloud-download' ></i>
-					<span class="text">Download PDF</span>
-				</a> -->
+				
 			</div>
 
 			<div class="table-data">
@@ -130,8 +127,9 @@ include('../global/conexion.php');
 
 						<?php 
 
-							$query = mysqli_query($conn,"SELECT * FROM reg_sellers ORDER BY IDregseller DESC");
-							while($data = mysqli_fetch_array($query)){
+							$query = ("SELECT * FROM reg_sellers WHERE solicitud = 'Pendiente'");
+							$resultado = mysqli_query($conn,$query);
+							while($data = mysqli_fetch_array($resultado)){
 						?>
 							<tr>
 								<td>
@@ -139,7 +137,7 @@ include('../global/conexion.php');
 									<p><?php echo $data['Nombre']?></p>
 								</td>
 								
-								<td><a href="./det-vend.php?id_vend=<?php echo $data['IDregseller'];?>"><span class="status completed">Ver info</span></a></td>
+								<td><a href="./pages/det-vend.php?id_vend=<?php echo $data['IDregseller'];?>"><span class="status completed">Ver info</span></a></td>
 							</tr>
 							
 							<?php }?>

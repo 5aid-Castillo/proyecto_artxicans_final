@@ -48,7 +48,11 @@
     if ($state == "approved")
         {
 
-            $Mpaypal = "<h3> Pago aprobado </h3>";
+            $Mpaypal = "
+            <div class='alert alert-success' role='alert'>
+            <h3> Pago aprobado </h3>
+            </div>
+            ";
             # cambio de estado a aprobado
             $sentencia = "  UPDATE `ventas` 
                             SET `paypaldatos` = '$respuestaventa', `estatus` = 'aprobado'
@@ -67,13 +71,17 @@
         }
     else
         {
-            $Mpaypal = "<h3> Hay un problema con el pago </h3>";
+            $Mpaypal = "
+            <div class='alert alert-danger' role='alert'>
+            <h3> Hay un problema con el pago </h3>
+            </div>
+            ";
         }
     #echo $Mpaypal;
 ?>
 
 <div class="jumbotron text-center">
-    <h1 class="display-4">Listo</h1>
+    <h1 class="display-4">Estatus de pago</h1>
     <hr class="my-4">
     <p class="lead"><?php echo $Mpaypal?></p>
     <p>
@@ -88,7 +96,7 @@
                     #print_r($listaproductos);
                     while($listaproductos = mysqli_fetch_assoc($resultado))
                         {
-                            $imagen = $listaproductos['image'];
+                            $imagen = $listaproductos['image1'];
                             $nombre = $listaproductos['product'];
                             $id_product = $listaproductos['id_product'];
                             $cantidad = $listaproductos['cantidad'];
@@ -101,7 +109,13 @@
                             if ($resultadoactualizado)
                                 {
         ?>
-                                    <div class="col-2 text-center">
+
+                                    <center class="cheque">
+                                        <img src="./assets/utilities/cheque-de-pago.png" alt="cheque" style="width:120px; height:110px">
+                                        <p class="mt-3">Puedes revisar tu lista de pedidos:</p>
+                                        <button class="btn btn-info" onclick="location.href='./orders.php'">Ver pedidos</button>
+                                    </center>
+                                   <!--  <div class="col-2 text-center">
                                         <div class="card">
                                         <div class='imgDiv'>
                                             <img src="assets/products/<?php echo $imagen;?>"  alt="<?php echo $imagen?>">
@@ -109,7 +123,7 @@
                                             <h3><?php echo $nombre;?></h3>
                                         </div>
                                     </div>
-                                    <?php print_r($listaproductos);?>
+                                    <?php print_r($listaproductos);?> -->
         <?php
                                 }
                         }

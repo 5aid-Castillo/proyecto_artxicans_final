@@ -1,5 +1,8 @@
 <!DOCTYPE html>
+<?php 
 
+include('../global/conexion.php');
+?>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -29,25 +32,25 @@
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="./orders.php">
 					<i class='bx bxs-shopping-bag-alt' ></i>
 					<span class="text">Pedidos</span>
 				</a>
 			</li>
-			<li>
-				<a href="#">
-					<i class='bx bxs-send' ></i>
-					<span class="text">Envios</span>
+			 <li>
+				<a href="./products.php">
+					<i class='bx bxs-package'></i>
+					<span class="text">Productos</span>
 				</a>
-			</li>
+			</li> 
 			<li>
-				<a href="#">
+				<a href="./sellers.php">
 					<i class='bx bxs-user' ></i>
 					<span class="text">Vendedores</span>
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="./reports.php">
 					<i class='bx bxs-error' ></i>
 					<span class="text">Reportes</span>
 				</a>
@@ -117,6 +120,7 @@
 				</a> -->
 			</div>
 
+			<?php include('./helpers/counters.php');?>
 			<ul class="box-info">
 				<li>
 					<i class='bx bxs-shopping-bag-alt' ></i>
@@ -126,38 +130,38 @@
 					</span>
 				</li>
 				<li>
-					<i class='bx bxs-send' ></i>
+					<i class='bx bxs-package'></i>
 					<span class="text">
-						<h3>2</h3>
-						<p>Envios</p>
+						<h3><?php echo $products?></h3>
+						<p>Productos</p>
 					</span>
-				</li>
+				</li> 
 				<li>
 					<i class='bx bxs-user' ></i>
 					<span class="text">
-						<h3>10</h3>
+						<h3><?php echo $sellers?></h3>
 						<p>Vendedores</p>
 					</span>
 				</li>
 				<li>
 					<i class='bx bxs-error' ></i>
 					<span class="text">
-						<h3>2</h3>
+						<h3><?php echo $reports?></h3>
 						<p>Reportes</p>
 					</span>
 				</li>
 				<li>
 					<i class='bx bxs-user-check' ></i>
 					<span class="text">
-						<h3>10</h3>
-						<p>Nuevos vendedores</p>
+						<h3><?php echo $req_sellers?></h3>
+						<p>Solicitud de vendedores</p>
 					</span>
 				</li>
 				<li>
 					<i class='bx bxs-select-multiple' ></i>
 					<span class="text">
 						<h3>10</h3>
-						<p>Nuevos productos</p>
+						<p>Solicitud de productos</p>
 					</span>
 				</li>
 			</ul>

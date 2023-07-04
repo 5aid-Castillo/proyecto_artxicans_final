@@ -4,22 +4,29 @@ include('./templates/cabecera.php');
 if(!@$_SESSION['user']){ 
     echo("<script>location.href = '../index.php';</script>");  
 }
+# Obtenemos id del vendedor.
 $seller = base64_decode($_GET['seller_data']);
 $id_user = $_SESSION['id'];
+# Consultamos la tabla de reg_sellers para saber el nickname que se asigno el mismo vendedor
 $query = mysqli_query($conn, "SELECT * FROM reg_sellers WHERE ID_registro = $seller");
 $data = mysqli_fetch_array($query);
 ?>
-    <div class="header-chat" align="center">
-             <?php echo $data['nickname']?>
-         </div>
+<!-- Mostramos nickname del vendedor -->
+<div class="header-chat" align="center">
+    <?php echo $data['nickname']?>
+</div>
 <section class="toChat" style="color:grey">
          <div class="body-chat mt-3">
                 <?php 
+                    # Hacemos consulta para obtener todos los chats donde el ID_registro sea igual al usuario en SESSION
                     $message_query = mysqli_query($conn,"SELECT * FROM chats WHERE ID_registro = '$id_user' AND seller = '$seller'");
+                    # Mostrar todos los mensajes
                     while($data_message = mysqli_fetch_array($message_query)){
+                        #El posicionamiento de los mensajes lo hace por si mismo mysql con su id autoincrementable
                       $data_m = $data_message['sent'];
                       
                       if($data_m == 'Seller'){
+                        #Mostramos todos los mensajes donde la columna 'Sent' sean seller, de un color distinto y arriba
                 ?>
                  <div class="seller-answer">
                    <div class="alert alert-dark width-seller" role="alert">
@@ -28,6 +35,7 @@ $data = mysqli_fetch_array($query);
                  </div>
                 <?php 
              } 
+             # Y no tienen en la columna Seller, entonces son mensajes de usuario y los mostrariamos abajo con distinto color 
                 if($data_m =='User'){
                 
                 ?>

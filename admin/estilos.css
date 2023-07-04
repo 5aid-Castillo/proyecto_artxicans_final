@@ -44,3 +44,19 @@
     height: 5rem;
     resize: none;
 }
+
+/* Report */
+.title-report strong{
+    color:var(--danger);
+}
+.data-report{
+    border: 1px solid var(--danger);
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+.data-report strong{
+    color: var(--primary);
+}
+.note-report{
+    color: grey;
+}

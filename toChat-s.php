@@ -4,21 +4,25 @@
     if(!@$_SESSION['user']){ 
         echo("<script>location.href = '../index.php';</script>");  
     }
+    # Mostrar chats a vendedores con usuarios. 
     $user = $_SESSION['id'];
     $id_chat = base64_decode($_GET['id_chat']);
     $query = mysqli_query($conn, "SELECT * FROM registro WHERE ID= $id_chat");
     $data = mysqli_fetch_array($query);
 ?>
+<!-- Header del chat, mostrando con que usuario estan chateando-->
    <div class="header-chat" align="center">
             <?php echo $data['Nombre']?>
         </div>
 <section class="toChat" style="color:grey">
         <div class="body-chat mt-3" >
                 <?php 
+                    # Consulta y obtener mensajes donde el idregistro sea igual al id del usuario que se obtuvo en la pagina anterior, y donde el id del vendedor sea igual al id en session(vendedor).
+
                     $message_query = mysqli_query($conn,"SELECT * FROM chats WHERE ID_registro = '$id_chat' AND seller = '$user'");
-                    while($data_message = mysqli_fetch_array($message_query)){
+                    while($data_message = mysqli_fetch_array($message_query)){ # Mostramos todos los mensajes donde coincidan con la condicion
                       $data_m = $data_message['sent'];
-                      
+                    # Si en la columna 'sent' es User, se mostrara arriba con un color distinto 
                       if($data_m == 'User'){
                 ?>
                  <div class="seller-answer">

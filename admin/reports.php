@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-
+<?php 
+include('../global/conexion.php');
+?>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -10,7 +12,7 @@
 	<!-- My CSS -->
 	<link rel="stylesheet" href="style.css">
 
-	<title>Registro de Productos</title>
+	<title>Artxicans -Panel</title>
 </head>
 <body>
 
@@ -28,7 +30,7 @@
 					<span class="text">Inicio</span>
 				</a>
 			</li>
-			<li>
+			<li >
 				<a href="./orders.php">
 					<i class='bx bxs-shopping-bag-alt' ></i>
 					<span class="text">Pedidos</span>
@@ -46,7 +48,7 @@
 					<span class="text">Vendedores</span>
 				</a>
 			</li>
-			<li>
+			<li class="active">
 				<a href="./reports.php">
 					<i class='bx bxs-error' ></i>
 					<span class="text">Reportes</span>
@@ -54,13 +56,13 @@
 			</li>
 		</ul>
 		<ul class="side-menu">
-			<li >
+			<li>
 				<a href="./reg-vendedores.php">
 					<i class='bx bxs-user-check' ></i>
 					<span class="text">Nuevos vendedores</span>
 				</a>
 			</li>
-			<li class="active">
+			<li>
 				<a href="./reg-productos.php">
 					<i class='bx bxs-select-multiple' ></i>
 					<span class="text">Nuevos productos</span>
@@ -99,37 +101,41 @@
 						</li>
 						<li><i class='bx bx-chevron-right' ></i></li>
 						<li>
-							<a class="active" href="./reg-productos.php">Registro de productos</a>
+							<a class="active" href="./reports.php">Reportes</a>
 						</li>
 					</ul>
 				</div>
-				
+			
 			</div>
 
 			<div class="table-data">
 				<div class="order">
 					<div class="head">
-						<h3>Solicitud de productos</h3>
+						<h3>Lista de Reportes</h3>
+						
 					</div>
 					<table>
 						<thead>
 							<tr>
-								<th>Usuario</th>
-								<th>Producto</th>
+								<th>Tipo de reporte</th>
 								<th>Información</th>
 							</tr>
 						</thead>
 						<tbody>
-							
+						<?php 
+							$query = mysqli_query($conn,"SELECT * FROM reports");
+							while($row = mysqli_fetch_array($query)){
+						?>
+					
 							<tr>
 								<td>
-									<img src="../assets/utilities/caja.png">
-									<p>John Doe</p>
+									<img src="../assets/utilities/reporte.png">
+									<p><?php echo $row['type']?></p>
 								</td>
-								<td>Alebrije</td>
-								<td><span class="status completed">Ver info</span></td>
+								
+								<td><a href="./pages/det-reports.php?report=<?php echo $row['id_report']?>"><span class="status completed">Ver info</span></a></td>
 							</tr>
-							
+						<?php }?>
 							
 						</tbody>
 					</table>

@@ -436,6 +436,7 @@ El Sitio se encuentra habilitado para funcionar las 24 (veinticuatro) horas del 
     
     <script src="js/formReg.js"></script>
     <script src="js/Burgerbtn.js"></script>
+  
     <script type="text/javascript" src="./js/Loader.js"></script>
     <script type="text/javascript" src="./js/Translate.js"></script>
     <script src="./styles/bootstrap-5.2.3-dist/js/bootstrap.min.js"></script>
