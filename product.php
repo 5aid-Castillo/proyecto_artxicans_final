@@ -322,8 +322,9 @@
           <div class="com-cointer"> 
             
         <p class="stars-score"><strong><?php echo $data['Nombre']?></strong>&nbsp;&nbsp; 
+
               <?php
-             
+              
               switch($data['star']){
                 case '1': echo "<i class='bx bxs-star bx-5'></i><i class='bx bxs-star bx-10'></i><i class='bx bxs-star bx-10'></i><i class='bx bxs-star bx-10'></i><i class='bx bxs-star bx-10'></i>";
                 break;

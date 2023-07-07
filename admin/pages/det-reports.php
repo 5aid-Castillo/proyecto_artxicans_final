@@ -20,13 +20,13 @@ include('../../global/conexion.php');
 
 	<!-- SIDEBAR -->
 	<section id="sidebar">
-		<a href="../index.php" class="brand">
+		<a href="../menu.php" class="brand">
 			<i class='bx bxs-font-color'></i>
 			<span class="text">Artxicans</span>
 		</a>
 		<ul class="side-menu top">
 			<li >
-				<a href="../index.php">
+				<a href="../menu.php">
 					<i class='bx bxs-home' ></i>
 					<span class="text">Inicio</span>
 				</a>
@@ -49,7 +49,7 @@ include('../../global/conexion.php');
 					<span class="text">Vendedores</span>
 				</a>
 			</li>
-			<li>
+			<li class="active">
 				<a href="../reports.php">
 					<i class='bx bxs-error' ></i>
 					<span class="text">Reportes</span>
@@ -57,7 +57,7 @@ include('../../global/conexion.php');
 			</li>
 		</ul>
 		<ul class="side-menu">
-			<li class="active">
+			<li >
 				<a href="../reg-vendedores.php">
 					<i class='bx bxs-user-check' ></i>
 					<span class="text">Nuevos vendedores</span>
@@ -98,7 +98,7 @@ include('../../global/conexion.php');
 					<h1></h1>
 					<ul class="breadcrumb">
 						<li>
-							<a href="../index.php">Menu</a>
+							<a href="../menu.php">Menu</a>
 						</li>
 						<li><i class='bx bx-chevron-right' ></i></li>
 						<li>
@@ -106,7 +106,7 @@ include('../../global/conexion.php');
 						</li>
 						<li><i class='bx bx-chevron-right' ></i></li>
 						<li>
-							<a class="active" href="../pages/det-reports.php">Reporte</a>
+							<a class="active" href="">Reporte</a>
 						</li>
 					</ul>
 				</div>

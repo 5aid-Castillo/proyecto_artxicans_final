@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php 
+	include('../global/conexion.php');
+
+?>
 
 <html lang="en">
 <head>
@@ -17,13 +21,13 @@
 
 	<!-- SIDEBAR -->
 	<section id="sidebar">
-		<a href="./index.php" class="brand">
+		<a href="./menu.php" class="brand">
 			<i class='bx bxs-font-color'></i>
 			<span class="text">Artxicans</span>
 		</a>
 		<ul class="side-menu top">
 			<li >
-				<a href="./index.php">
+				<a href="./menu.php">
 					<i class='bx bxs-home' ></i>
 					<span class="text">Inicio</span>
 				</a>
@@ -95,11 +99,11 @@
 					<h1></h1>
 					<ul class="breadcrumb">
 						<li>
-							<a href="#">Menu</a>
+							<a href="./menu.php">Menu</a>
 						</li>
 						<li><i class='bx bx-chevron-right' ></i></li>
 						<li>
-							<a class="active" href="./products.php">Pedidos</a>
+							<a class="active" href="./products.php">Productos</a>
 						</li>
 					</ul>
 				</div>
@@ -121,19 +125,24 @@
 							</tr>
 						</thead>
 						<tbody>
-                        
+						<?php 
+							$query = mysqli_query($conn,"SELECT * FROM products INNER JOIN reg_sellers 
+							WHERE products.ID_registro = reg_sellers.ID_registro");
+
+							while($data = mysqli_fetch_array($query)){
+						?>
 					
 							<tr>
 								<td>
 									<img src="../assets/utilities/caja.png">
-									<p>Producto</p>
+									<p><?php echo $data['product']?></p>
 								</td>
-                                <td>Prodigy69</td>
+                                <td><?php echo $data['nickname']?></td>
 								
-								<td><a href=""><span class="status completed">Ver info</span></a></td>
+								<td><a href="./pages/det-prod.php?product=<?php echo $data['id_product']?>"><span class="status completed">Ver info</span></a></td>
 							</tr>
 							
-							
+						<?php }?>
 						</tbody>
 					</table>
 				</div>

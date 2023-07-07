@@ -21,13 +21,13 @@ include('../global/conexion.php');
 
 	<!-- SIDEBAR -->
 	<section id="sidebar">
-		<a href="./index.php" class="brand">
+		<a href="./menu.php" class="brand">
 			<i class='bx bxs-font-color'></i>
 			<span class="text">Artxicans</span>
 		</a>
 		<ul class="side-menu top">
 			<li >
-				<a href="./index.php">
+				<a href="./menu.php">
 					<i class='bx bxs-home' ></i>
 					<span class="text">Inicio</span>
 				</a>
@@ -99,11 +99,11 @@ include('../global/conexion.php');
 					<h1></h1>
 					<ul class="breadcrumb">
 						<li>
-							<a href="#">Menu</a>
+							<a href="./menu.php">Menu</a>
 						</li>
 						<li><i class='bx bx-chevron-right' ></i></li>
 						<li>
-							<a class="active" href="./reg-vendedores.php">Vendedores</a>
+							<a class="active" href="./sellers.php">Vendedores</a>
 						</li>
 					</ul>
 				</div>
@@ -119,7 +119,7 @@ include('../global/conexion.php');
 					<table>
 						<thead>
 							<tr>
-								<th>Usuario</th>
+								<th>Vendedor</th>
 								<th>Detalles</th>
 							</tr>
 						</thead>
@@ -135,7 +135,7 @@ include('../global/conexion.php');
 									<p><?php echo $data['nickname']?></p>
 								</td>
 								
-								<td><a href=""><span class="status completed">Ver info</span></a></td>
+								<td><a href="./pages/det-sellers.php?seller=<?php echo $data['IDregseller']?>"><span class="status completed">Ver info</span></a></td>
 							</tr>
 						<?php }?>
 							

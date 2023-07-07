@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-07-2023 a las 00:58:21
+-- Tiempo de generación: 07-07-2023 a las 06:36:53
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -415,23 +415,24 @@ CREATE TABLE `reports` (
   `id_product` int(11) DEFAULT NULL,
   `id_star` int(11) DEFAULT NULL,
   `id_comment` int(11) DEFAULT NULL,
-  `seller` int(11) DEFAULT NULL
+  `seller` int(11) DEFAULT NULL,
+  `buyer` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `reports`
 --
 
-INSERT INTO `reports` (`id_report`, `report`, `type`, `ID_registro`, `id_product`, `id_star`, `id_comment`, `seller`) VALUES
-(5, '', 'Comentario', 5, 2, 1, NULL, NULL),
-(9, 'hola', 'Producto', 5, 2, NULL, NULL, NULL),
-(10, 'hola', 'Producto', 5, 2, NULL, NULL, NULL),
-(11, 'Hola', 'Producto', 5, 8, NULL, NULL, NULL),
-(12, '', 'Comentario Perfil', 5, NULL, NULL, 3, NULL),
-(13, '', 'Comentario Perfil', 5, NULL, NULL, 1, NULL),
-(14, '', 'Comentario Perfil', 5, NULL, NULL, 2, NULL),
-(15, 'hola hola', 'Vendedor', 7, NULL, NULL, NULL, 5),
-(16, 'HOLA', 'Vendedor', 7, NULL, NULL, NULL, 5);
+INSERT INTO `reports` (`id_report`, `report`, `type`, `ID_registro`, `id_product`, `id_star`, `id_comment`, `seller`, `buyer`) VALUES
+(5, '', 'Comentario', 5, 2, 1, NULL, NULL, NULL),
+(9, 'hola', 'Producto', 5, 2, NULL, NULL, NULL, NULL),
+(10, 'hola', 'Producto', 5, 2, NULL, NULL, NULL, NULL),
+(11, 'Hola', 'Producto', 5, 8, NULL, NULL, NULL, NULL),
+(12, '', 'Comentario Perfil', 5, NULL, NULL, 3, NULL, NULL),
+(13, '', 'Comentario Perfil', 5, NULL, NULL, 1, NULL, NULL),
+(14, '', 'Comentario Perfil', 5, NULL, NULL, 2, NULL, NULL),
+(15, 'hola hola', 'Vendedor', 7, NULL, NULL, NULL, 5, NULL),
+(16, 'HOLA', 'Vendedor', 7, NULL, NULL, NULL, 5, NULL);
 
 -- --------------------------------------------------------
 
@@ -666,7 +667,8 @@ ALTER TABLE `reports`
   ADD KEY `id_star` (`id_star`),
   ADD KEY `id_comment` (`id_comment`),
   ADD KEY `ID` (`ID_registro`),
-  ADD KEY `seller` (`seller`);
+  ADD KEY `seller` (`seller`),
+  ADD KEY `buyer` (`buyer`);
 
 --
 -- Indices de la tabla `sellers_data`
@@ -828,7 +830,8 @@ ALTER TABLE `reports`
   ADD CONSTRAINT `reports_ibfk_3` FOREIGN KEY (`id_star`) REFERENCES `stars` (`id_star`),
   ADD CONSTRAINT `reports_ibfk_4` FOREIGN KEY (`id_comment`) REFERENCES `profile_comments` (`id_comment`),
   ADD CONSTRAINT `reports_ibfk_5` FOREIGN KEY (`ID_registro`) REFERENCES `registro` (`ID`),
-  ADD CONSTRAINT `reports_ibfk_6` FOREIGN KEY (`seller`) REFERENCES `registro` (`ID`);
+  ADD CONSTRAINT `reports_ibfk_6` FOREIGN KEY (`seller`) REFERENCES `registro` (`ID`),
+  ADD CONSTRAINT `reports_ibfk_7` FOREIGN KEY (`buyer`) REFERENCES `registro` (`ID`);
 
 --
 -- Filtros para la tabla `sellers_data`

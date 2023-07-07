@@ -19,13 +19,13 @@ include('../global/conexion.php');
 
 	<!-- SIDEBAR -->
 	<section id="sidebar">
-		<a href="./index.php" class="brand">
+		<a href="./menu.php" class="brand">
 			<i class='bx bxs-font-color'></i>
 			<span class="text">Artxicans</span>
 		</a>
 		<ul class="side-menu top">
 			<li >
-				<a href="./index.php">
+				<a href="./menu.php">
 					<i class='bx bxs-home' ></i>
 					<span class="text">Inicio</span>
 				</a>
@@ -97,7 +97,7 @@ include('../global/conexion.php');
 					<h1></h1>
 					<ul class="breadcrumb">
 						<li>
-							<a href="#">Menu</a>
+							<a href="./menu.php">Menu</a>
 						</li>
 						<li><i class='bx bx-chevron-right' ></i></li>
 						<li>
