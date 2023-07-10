@@ -31,19 +31,19 @@ include('../../global/conexion.php');
 					<span class="text">Inicio</span>
 				</a>
 			</li>
-			<li>
+			<li class="active">
 				<a href="../orders.php">
 					<i class='bx bxs-shopping-bag-alt' ></i>
 					<span class="text">Pedidos</span>
 				</a>
 			</li>
-			<li>
+			<li >
 				<a href="../products.php">
 					<i class='bx bxs-package'></i>
 					<span class="text">Productos</span>
 				</a>
 			</li> 
-			<li class="active">
+			<li >
 				<a href="../sellers.php">
 					<i class='bx bxs-user' ></i>
 					<span class="text">Vendedores</span>
@@ -98,24 +98,49 @@ include('../../global/conexion.php');
 					<h1></h1>
 					<ul class="breadcrumb">
 						<li>
-							<a href="../menu.php">Menu</a>
+							<a href="../menu.php">Inicio</a>
 						</li>
 						<li><i class='bx bx-chevron-right' ></i></li>
 						<li>
-							<a  href="../sellers.php">Vendedores</a>
+							<a  href="../admin.php">Administradores</a>
 						</li>
 						<li><i class='bx bx-chevron-right' ></i></li>
 						<li>
-							<a class="active" href="">Vendedor</a>
+							<a class="active" href="">Añadir</a>
 						</li>
 					</ul>
 				</div>
 				
 			</div>
 
-		<?php
-			include('../helpers/Sdet-seller.php');
-		?>
+            <div class="table-data">
+				<div class="order">
+					<div class="head">
+						<h3>Agregar nuevo administrador</h3>
+						
+					</div>
+                    <center>
+					<form class="form-admin" method="POST">
+                        <label for="nombre">Nombre</label>
+                        <div class="">
+                            <input type="text" name="nombre" id="nombre" class="input-admin"/>
+                        </div>
+                        <label for="correo">Correo</label>
+                        <div class="">
+                            <input type="email" name="correo" id="correo" class="input-admin"/>
+                        </div>
+                        <label for="password">Contraseña</label>
+                        <div class="">
+                            <input type="password" name="contrasena" id="contrasena" class="input-admin"/>
+                        </div>
+						<div class="buttons-admin">
+                        <a class="btn-back" href='../admin.php'>Cancelar</a>
+                        <button class="btn-reg" type="submit">Registar</button>
+                    </div>
+                    </form>
+                  
+                    </center>
+				</div>
 		</main>
 		<!-- MAIN -->
 	</section>

@@ -52,7 +52,10 @@
                                         <form method="post" action="">
                                                 <input name="midprod" type="hidden" value="<?php print $indice?>" >
                                                 <input name="cantidad" value=" <?php echo $product['cantidad'];?>" style="width: 2.5rem">
-                                                <input name="button-cart"  class="btn btn-info" value = "Actualizar" type="submit">
+                                                <button type="submit" class="btn btn-info">
+                                                    <i class='bx bx-refresh bx-sm'></i>
+                                                    <input type="hidden" name="button-cart"  class="btn btn-info" value = "Actualizar" type="submit">
+                                                </button>
                                             </form>
                                         </td>
                                         <td scope="row">$<?php echo $product['precio']; ?></td>

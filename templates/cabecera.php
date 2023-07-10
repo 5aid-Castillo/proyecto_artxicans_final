@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="./styles/pages/help.css?v=2" />
     <link rel="stylesheet" href="./styles/pages/profile.css?v=2" />
     <link rel="stylesheet" href="./styles/pages/chats.css?v=2" />
+    <link rel="stylesheet" href="./styles/pages/about.css?v=2" />
     <link rel="stylesheet" href="./styles/pages/cart.css?v=2" />
     <link rel="stylesheet" href="index.css?v=2" />
     <!-- Boxicons -->
@@ -52,7 +53,7 @@
     <header class="header">
       <nav class="navigation">
         <div class="logo">
-          <a href="index.html"><!-- <img src="./assets/imgimg.jpg" /> -->Artxicans</a>
+          <a href="index.php"> <img src="./assets/logo/3.png"  "/> </a>
         </div>
         <button class="burger-btn">
           <svg

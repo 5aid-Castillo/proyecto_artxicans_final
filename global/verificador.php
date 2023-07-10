@@ -106,8 +106,8 @@
                                             WHERE `id_product` = '$id_product'
                                             AND `product` = '$nombre'";
                             $resultadoactualizado = mysqli_query($conn, $sentencia);
-                            if ($resultadoactualizado)
-                                {
+                           /*  if ($resultadoactualizado)
+                                { */
         ?>
 
                                     <center class="cheque">
@@ -128,7 +128,7 @@
                                 }
                         }
                         
-                }
+             /*    } */
         ?>
     </p>
 </div>

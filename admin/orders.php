@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-
+<?php 
+	include('../global/conexion.php');
+?>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -120,17 +122,24 @@
 							</tr>
 						</thead>
 						<tbody>
-
+						<?php 
+							$query = mysqli_query($conn,"SELECT * FROM ventas WHERE estatus = 'completo' ORDER BY id_venta DESC");
+							while($data = mysqli_fetch_array($query)){
 					
+						?>
+
+							<tr>
+								<td align="center"><strong> <?php echo $data['fecha']?></strong></td>
+							</tr>
 							<tr>
 								<td>
-									<img src="../assets/utilities/usuario.png">
-									<p>Hola</p>
+									<img src="../assets/utilities/bolsa.png">
+									<p><?php echo $data['correo']?></p>
 								</td>
 								
-								<td><a href=""><span class="status completed">Ver info</span></a></td>
+								<td><a href="./pages/det-order.php?order=<?php echo $data['id_venta']?>"><span class="status completed">Ver info</span></a></td>
 							</tr>
-							
+						<?php }?>
 							
 						</tbody>
 					</table>

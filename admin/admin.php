@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <?php 
-	include('../global/conexion.php');
 
+include('../global/conexion.php');
 ?>
-
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -26,7 +25,7 @@
 			<span class="text">Artxicans</span>
 		</a>
 		<ul class="side-menu top">
-			<li >
+			<li class="active">
 				<a href="./menu.php">
 					<i class='bx bxs-home' ></i>
 					<span class="text">Inicio</span>
@@ -38,7 +37,7 @@
 					<span class="text">Pedidos</span>
 				</a>
 			</li>
-			<li class="active">
+			 <li>
 				<a href="./products.php">
 					<i class='bx bxs-package'></i>
 					<span class="text">Productos</span>
@@ -87,8 +86,8 @@
 		<!-- NAVBAR -->
 		<nav>
 			<i class='bx bx-menu' ></i>
-			
-			
+			<a href="./admin.php"><i class='bx bxs-user-circle bx-md'></i></a>
+		
 		</nav>
 		<!-- NAVBAR -->
 
@@ -103,51 +102,48 @@
 						</li>
 						<li><i class='bx bx-chevron-right' ></i></li>
 						<li>
-							<a class="active" href="./products.php">Productos</a>
+							<a href="./menu.php">Inicio</a>
+						</li>
+                        <li><i class='bx bx-chevron-right' ></i></li>
+                        <li>
+							<a class="active" href="./admin.php">Administrador</a>
 						</li>
 					</ul>
 				</div>
-			
+			    <a href="./pages/add-admin.php" class="btn-download">
+                <i class='bx bx-user-plus bx-sm'></i>
+					<span class="text">Agregar nuevo administrador</span>
+				</a> 
 			</div>
 
-			<div class="table-data">
+
+            <div class="table-data">
 				<div class="order">
 					<div class="head">
-						<h3>Lista de Productos</h3>
+						<h3>Lista de administradores</h3>
 						
 					</div>
 					<table>
 						<thead>
 							<tr>
-								<th>Producto</th>
-								<th>Propietario</th>
-								<th>Información</th>
+								<th>Administrador</th>
+								<th>Correo</th>
+								<th>Eliminar</th>
 							</tr>
 						</thead>
 						<tbody>
-						<?php 
-							$query = mysqli_query($conn,"SELECT * FROM products INNER JOIN reg_sellers 
-							WHERE products.ID_registro = reg_sellers.ID_registro ORDER BY rand()");
-
-							while($data = mysqli_fetch_array($query)){
-						?>
-					
 							<tr>
 								<td>
-									<img src="../assets/utilities/caja.png">
-									<p><?php echo $data['product']?></p>
+									<img src="../assets/utilities/administrador.png">
+									<p>Said castillo</p>
 								</td>
-                                <td><?php echo $data['nickname']?></td>
-								
-								<td><a href="./pages/det-prod.php?product=<?php echo $data['id_product']?>"><span class="status completed">Ver info</span></a></td>
+								<td>said@gmail.com</td>
+								<td><a href="./"><img src="../assets/utilities/cerrar.png"></a></td>
 							</tr>
 							
-						<?php }?>
 						</tbody>
 					</table>
 				</div>
-			
-
 
 		
 		</main>

@@ -86,7 +86,7 @@ include('../global/conexion.php');
 		<!-- NAVBAR -->
 		<nav>
 			<i class='bx bx-menu' ></i>
-			
+			<a href="./admin.php"><i class='bx bxs-user-circle bx-md'></i></a>
 			<!-- <input type="checkbox" id="switch-mode" hidden>
 			<label for="switch-mode" class="switch-mode"></label>
 			<a href="#" class="notification">

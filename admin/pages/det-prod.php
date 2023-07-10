@@ -102,7 +102,7 @@ include('../../global/conexion.php');
 						</li>
 						<li><i class='bx bx-chevron-right' ></i></li>
 						<li>
-							<a class="active" href="../products.php">Productos</a>
+							<a  href="../products.php">Productos</a>
 						</li>
 						<li><i class='bx bx-chevron-right' ></i></li>
 						<li>

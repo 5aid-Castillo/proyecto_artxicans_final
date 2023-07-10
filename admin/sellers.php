@@ -125,7 +125,7 @@ include('../global/conexion.php');
 						</thead>
 						<tbody>
                         <?php 
-                        $query = mysqli_query($conn,"SELECT * FROM reg_sellers WHERE solicitud = 'Aprobado'");
+                        $query = mysqli_query($conn,"SELECT * FROM reg_sellers WHERE solicitud = 'Aprobado' ORDER BY rand()");
                         while($data = mysqli_fetch_array($query)){
                         ?>
 					
